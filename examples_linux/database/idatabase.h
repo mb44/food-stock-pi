@@ -6,6 +6,7 @@
 
 class IDatabase {
   public:
+    virtual ~IDatabase() { std::cout << "IDatabase destructed" << std::endl; };
     virtual std::string getContainerItem(int) = 0;
     virtual std::string createContainerItem(std::string) = 0;
     virtual std::string deleteContainerItem(int) = 0;
