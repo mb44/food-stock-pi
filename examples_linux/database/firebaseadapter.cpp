@@ -7,6 +7,22 @@
 
 using namespace std;
 
+FirebaseAdapter::FirebaseAdapter() {
+  //cout << "Constructor called" << endl;
+  FirebaseConfig cfg;
+  cfg.projectId = "foodwastereduction-6ca48";
+  cfg.apiKey = "AIzaSyBxlo2I0gI-2c5nb3w9feXabKInEvVotj8";
+  cfg.email = "mortenbeuchert@gmail.com";
+  cfg.password = "123456";
+
+  auth = new Auth(cfg);
+}
+
+FirebaseAdapter::~FirebaseAdapter() {
+  //cout << "FirebaseAdapter destructed" << endl;
+  delete auth;
+}
+
 string FirebaseAdapter::getContainerItem(int containerId) {
   cout << "Firebase test" << endl;
   return "abc";
