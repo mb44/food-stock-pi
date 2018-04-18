@@ -3,21 +3,21 @@
 */
 
 /**
- * Example using Dynamic Payloads
+ * Food Supply Monitor application for Raspberry Pi
  *
- * This is an example of how to use payloads of a varying (dynamic) size.
+ * Payloads can be of a varying (dynamic) size.
  */
 
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
-#include <string>
+//#include <string>
 #include "../RF24.h"
 
 // Morten's includes
 #include <stdio.h>
 #include <stdlib.h>
-#include "database.h"
+#include "database/firebaseadapter.h"
 
 using namespace std;
 //
@@ -93,8 +93,9 @@ void setupRadio() {
 }
 
 int main(int argc, char** argv){
-  Database db;
-  db.print();
+  IDatabase *db = new FirebaseAdapter;
+  db->getContainerItem(2);  
+  delete db;
 
   // Print preamble:
   cout << "Welcome to Food Supply Monitor\n";
@@ -118,6 +119,11 @@ int main(int argc, char** argv){
 
       while (radio.available())
       {
+        // TODO
+        // 1. Receive message
+        // 2. Inpterpret message
+        // 3. ACK and talk to Firebase
+
         // Fetch the payload, and see if this was the last one.
 	len = radio.getDynamicPayloadSize();
 	radio.read( receive_payload, len );
