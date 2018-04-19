@@ -8,9 +8,9 @@
 using namespace std;
 
 FirebaseAdapter::FirebaseAdapter() {
-  auth = new Auth(cfg);
+  auth = new Auth(); //new Auth(cfg);
 
-  char *reply = auth->signInWithEmailAndPassword();
+  char *reply = auth->signInWithEmailAndPassword(cfg);
 
   authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
 

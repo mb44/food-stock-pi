@@ -6,11 +6,11 @@
 
 using namespace std;
 
-Auth::Auth(FirebaseConfig config) {
-  cfg = config;
+Auth::Auth() {
+  //cfg = config;
 }
 
-char * Auth::signInWithEmailAndPassword() {
+char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
   cout << "sign in with email and password:" << cfg.password << endl;
   FILE *fpipe;
 
