@@ -94,7 +94,11 @@ void setupRadio() {
 
 int main(int argc, char** argv){
   IDatabase *db = new FirebaseAdapter;
-  db->getContainerItem(2);  
+
+  cJSON *reply = db->getContainerItem(1);
+
+  char *res = cJSON_Print(reply);
+  printf("Containers: %s\n", res);
   delete db;
 
   // Print preamble:
