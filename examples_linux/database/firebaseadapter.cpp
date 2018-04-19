@@ -10,10 +10,11 @@ using namespace std;
 FirebaseAdapter::FirebaseAdapter() {
   auth = new Auth(); //new Auth(cfg);
 
+  authenticate();
+  /*
   char *reply = auth->signInWithEmailAndPassword(cfg);
 
   authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
-
 
   memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
   free(reply); 
@@ -21,12 +22,27 @@ FirebaseAdapter::FirebaseAdapter() {
   
 
   printf("FirebaseAdapter: %s\n", authToken);
+  */
 }
 
 FirebaseAdapter::~FirebaseAdapter() {
   //free(auth);
   // free authToken;
   // delete jsonReply;
+}
+
+void FirebaseAdapter::authenticate() {
+  char *reply = auth->signInWithEmailAndPassword(cfg);
+
+  if (authToken != NULL) {
+    free(authToken);
+  }
+
+  authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
+  
+  memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
+  free(reply);
+  authToken[AUTHTOKEN_LENGTH] = '\0';
 }
 
 cJSON * FirebaseAdapter::getContainerItem(int containerId) {
