@@ -8,14 +8,15 @@
 
 class FirebaseAdapter : public IDatabase {
   private:
+    FirebaseConfig cfg;
     Auth *auth;
-    std::string projectId;
     std::string httpHeader;
-    std::string idToken;
+    cJSON *authToken;
+    cJSON *jsonReply;
   public:
     FirebaseAdapter();
     virtual ~FirebaseAdapter();
-    std::string getContainerItem(int containerId) override;
+    cJSON * getContainerItem(int containerId) override;
     std::string createContainerItem(std::string containerItem) override;
     std::string deleteContainerItem(int containerId) override;
     std::string setMeasurement(int containerId, double measurement) override;
