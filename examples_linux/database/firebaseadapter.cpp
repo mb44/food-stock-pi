@@ -1,37 +1,45 @@
 #include "firebaseadapter.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <string>
 #include <iostream>
 
 using namespace std;
 
 FirebaseAdapter::FirebaseAdapter() {
-  //cout << "Constructor called" << endl;
-  FirebaseConfig cfg;
-  //cfg.projectId = "foodwastereduction-6ca48";
-  //cfg.apiKey = "AIzaSyBxlo2I0gI-2c5nb3w9feXabKInEvVotj8";
-  //cfg.email = "mortenbeuchert@gmail.com";
-  //cfg.password = "123456";
   auth = new Auth(cfg);
 
-  authToken = auth->signInWithEmailAndPassword();
-  cout << "FirebaseAdapter: " << authToken->valuestring << endl; 
+  char *reply = auth->signInWithEmailAndPassword();
+
+  authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
+
+
+  memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
+  free(reply); 
+  authToken[AUTHTOKEN_LENGTH] = '\0';
+  
+
+  printf("FirebaseAdapter: %s\n", authToken);
 }
 
 FirebaseAdapter::~FirebaseAdapter() {
-  // delete auth;
+  //free(auth);
   // free authToken;
   // delete jsonReply;
 }
 
 cJSON * FirebaseAdapter::getContainerItem(int containerId) {
-  cout << "Get containerItem" << endl;
-  string tmp = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken->valuestring+"'";
+  printf("Get container item auth: %s\n", authToken);
+  string tmp = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
-  cout << endl << "Tmp: " << tmp << endl;
+  //printf("FirebaseAdapter url: %s\n", tmp);
 
   FILE *fpipe;
 
   const char* getContainerItemCmd = tmp.c_str();
+  printf("GetContainer url: %s\n", getContainerItemCmd);  
+
   char msg[2048];
 
   if (0 == (fpipe = (FILE*)popen(getContainerItemCmd, "r"))) {

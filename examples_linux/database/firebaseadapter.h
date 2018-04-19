@@ -11,7 +11,7 @@ class FirebaseAdapter : public IDatabase {
     FirebaseConfig cfg;
     Auth *auth;
     std::string httpHeader;
-    cJSON *authToken;
+    char *authToken;
     cJSON *jsonReply;
   public:
     FirebaseAdapter();

@@ -3,16 +3,16 @@
 
 #include <iostream>
 #include <string>
-#include "globals.h"
+#include "config.h"
 #include "cjson.h"
 
 class Auth {
   private:
-    FirebaseConfig config;
+    FirebaseConfig cfg;
   public:
-    Auth(FirebaseConfig cfg);
+    Auth(FirebaseConfig config);
     ~Auth() { std::cout << "Auth destructed" << std::endl; };
-    cJSON * signInWithEmailAndPassword();
+    char * signInWithEmailAndPassword();
 };
 
 #endif

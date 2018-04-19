@@ -6,16 +6,15 @@
 
 using namespace std;
 
-Auth::Auth(FirebaseConfig cfg) {
-  config = cfg;
-  signInWithEmailAndPassword();
+Auth::Auth(FirebaseConfig config) {
+  cfg = config;
 }
 
-cJSON * Auth::signInWithEmailAndPassword() {
-  //cout << "sign in with email and password" << endl;
+char * Auth::signInWithEmailAndPassword() {
+  cout << "sign in with email and password:" << cfg.password << endl;
   FILE *fpipe;
 
-  string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+config.apiKey+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+config.email+"\",\"password\":\""+config.password+"\",\"returnSecureToken\":true}'";
+  string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+cfg.apiKey+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+cfg.email+"\",\"password\":\""+cfg.password+"\",\"returnSecureToken\":true}'";
    
   const char* signInCommand = tmp.c_str();
   char msg[2048];
@@ -38,13 +37,15 @@ cJSON * Auth::signInWithEmailAndPassword() {
   //char* response = cJSON_Print(root);
 
   cJSON *reply =  cJSON_GetObjectItemCaseSensitive(root, "idToken");
-  //printf("%s", reply->valuestring);
+  printf("Auth.cpp %s\n\n", reply->valuestring);
 
   pclose(fpipe);
 
+  char *res = cJSON_Print(reply);
+
   cJSON_Delete(root);
 
-  return reply;
+  return res;
 
 /*
   //printf("%s", idToken->valuestring);  
