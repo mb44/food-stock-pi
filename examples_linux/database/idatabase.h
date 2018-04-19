@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <string>
+#include "cjson.h"
 
 class IDatabase {
   public:
     virtual ~IDatabase() { std::cout << "IDatabase destructed" << std::endl; };
-    virtual std::string getContainerItem(int) = 0;
+    virtual cJSON * getContainerItem(int) = 0;
     virtual std::string createContainerItem(std::string) = 0;
     virtual std::string deleteContainerItem(int) = 0;
     virtual std::string setMeasurement(int, double) = 0;
