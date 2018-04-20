@@ -97,7 +97,10 @@ int main(int argc, char** argv){
   //cJSON *reply = db->getContainerItem(1);
   //cJSON *reply = db->getContainerState(2);
   //cJSON *reply = db->getUpdateFrequency(3);
-  cJSON *reply = db->setContainerState(0, "MORTEN");
+  //cJSON *reply = db->setMaximumCapacity(0, 12.56);
+  //cJSON *reply = db->setEmptyContainerWeight(1, 4.33);
+  //cJSON *reply = db->setMeasurement(1, 33.87);
+  cJSON *reply = db->createContainerItem();
 
   char *res = cJSON_Print(reply);
   printf("Reply: %s\n", res);
