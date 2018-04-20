@@ -15,6 +15,7 @@ class FirebaseAdapter : public IDatabase {
     char authToken[946];
     cJSON *jsonReply;
     void executeCURL(char *reply, const char *cmd);
+    int getUniqueContainerId();
   public:
     FirebaseAdapter();
     virtual ~FirebaseAdapter();
