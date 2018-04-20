@@ -94,10 +94,14 @@ void setupRadio() {
 
 int main(int argc, char** argv){
   IDatabase *db = new FirebaseAdapter;
-  cJSON *reply = db->getContainerItem(1);
+  //cJSON *reply = db->getContainerItem(1);
+  // cJSON *reply = db->getContainerState(2);
+  //cJSON *reply = db->getUpdateFrequency(3);
+    cJSON *reply = db->setContainerState(0, "MORTEN");
 
   char *res = cJSON_Print(reply);
-  printf("Containers: %s\n", res);
+  printf("Reply: %s\n", res);
+
   delete db;
   // Print preamble:
   cout << "Welcome to Food Supply Monitor\n";

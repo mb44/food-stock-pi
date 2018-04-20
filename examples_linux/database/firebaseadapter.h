@@ -11,7 +11,8 @@ class FirebaseAdapter : public IDatabase {
     FirebaseConfig cfg;
     Auth *auth;
     std::string httpHeader;
-    char *authToken;
+    //char *authToken;
+    char authToken[946];
     cJSON *jsonReply;
   public:
     FirebaseAdapter();
@@ -23,9 +24,9 @@ class FirebaseAdapter : public IDatabase {
     std::string setMeasurement(int containerId, double measurement) override;
     std::string setEmptyContainerWeight(int containerId, double measurement) override;
     std::string setMaximumCapacity(int containerId, double maxCapacity) override;
-    std::string getContainerState(int containerId) override;
-    std::string setContainerState(int containerId, std::string state) override;
-    std::string getUpdateFrequency(int containerId) override;
+    cJSON * getContainerState(int containerId) override;
+    cJSON * setContainerState(int containerId, std::string state) override;
+    cJSON * getUpdateFrequency(int containerId) override;
 };
 
 #endif // FIREBASEADAPTER_H

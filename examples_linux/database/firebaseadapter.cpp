@@ -34,11 +34,11 @@ FirebaseAdapter::~FirebaseAdapter() {
 void FirebaseAdapter::authenticate() {
   char *reply = auth->signInWithEmailAndPassword(cfg);
 
-  if (authToken != NULL) {
-    free(authToken);
-  }
+  ///if (authToken != NULL) {
+    //free(authToken);
+  //}
 
-  authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
+  //authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
   
   memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
   free(reply);
@@ -94,14 +94,93 @@ string FirebaseAdapter::setMaximumCapacity(int containerId, double maxCapacity) 
   return "";
 }
 
-string FirebaseAdapter::getContainerState(int containerId) {
-  return "";
+cJSON * FirebaseAdapter::getContainerState(int containerId) {
+  string tmp = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+"/containerState.json?auth="+authToken+"'";
+
+  FILE *fpipe;
+
+  const char* getContainerStateCmd = tmp.c_str();
+
+  char msg[2048];
+
+  if (0 == (fpipe = (FILE*)popen(getContainerStateCmd, "r"))) {
+    perror("popen() failed");
+    exit(1);
+  }
+
+  int i = 0;
+  char c = 0;
+  while (fread(&c, sizeof c, 1, fpipe)) {
+    msg[i++] = c;
+  }
+
+  cJSON *reply = cJSON_Parse(msg);
+
+  return reply;
 }
 
-string FirebaseAdapter::setContainerState(int containerid, string state) {
-  return "";
+cJSON * FirebaseAdapter::setContainerState(int containerId, string state) {
+  //cJSON *num = cJSON_CreateString(state.c_str());
+
+  cJSON *data = cJSON_CreateObject();
+
+  cJSON_AddStringToObject(data, "containerState", state.c_str());
+
+  char *tempData = cJSON_PrintUnformatted(data);
+
+  string tmp = "curl -X PATCH  -d '" + string(tempData) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+
+  cout << endl << "SetState url: " << tmp << endl;
+
+  cout << "STRING: " << tmp << endl;
+
+  FILE *fpipe;
+
+  const char* setContainerStateCmd = tmp.c_str();
+
+  char msg[2048];
+
+  if (0 == (fpipe = (FILE*)popen(setContainerStateCmd, "r"))) {
+    perror("popen() failed");
+    exit(1);
+  }
+
+  cJSON_Delete(data);
+
+  int i = 0;
+  char c = 0;
+  while (fread(&c, sizeof c, 1, fpipe)) {
+    msg[i++] = c;
+  }
+
+  cJSON *reply = cJSON_Parse(msg);
+
+  return reply;
 }
 
-string FirebaseAdapter::getUpdateFrequency(int containerId) {
-  return "";
+cJSON * FirebaseAdapter::getUpdateFrequency(int containerId) {
+  string tmp = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+"/updateFrequency.json?auth="+authToken+"'";
+
+  //printf("FirebaseAdapter url: %s\n", tmp);
+
+  FILE *fpipe;
+
+  const char* getUpdateFrequencyCmd = tmp.c_str();
+
+  char msg[2048];
+
+  if (0 == (fpipe = (FILE*)popen(getUpdateFrequencyCmd, "r"))) {
+    perror("popen() failed");
+    exit(1);
+  }
+
+  int i = 0;
+  char c = 0;
+  while (fread(&c, sizeof c, 1, fpipe)) {
+    msg[i++] = c;
+  }
+
+  cJSON *reply = cJSON_Parse(msg);
+
+  return reply;
 }
