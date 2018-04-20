@@ -4,6 +4,8 @@
 #include <string>
 
 #define AUTHTOKEN_LENGTH 945
+#define MAX_CONTAINERS 1000
+#define FIREBASE_REPLY_MAX 4096
 
 typedef struct {
   std::string projectId ="foodwastereduction-6ca48";
