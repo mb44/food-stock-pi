@@ -9,10 +9,10 @@ class IDatabase {
   public:
     virtual ~IDatabase() {};
     virtual cJSON * getContainerItem(int) = 0;
-    virtual std::string createContainerItem(std::string) = 0;
-    virtual std::string deleteContainerItem(int) = 0;
-    virtual std::string setMeasurement(int, double) = 0;
-    virtual std::string setEmptyContainerWeight(int, double) = 0;
+    virtual cJSON * createContainerItem() = 0;
+    virtual cJSON * deleteContainerItem(int) = 0;
+    virtual cJSON * setMeasurement(int, double) = 0;
+    virtual cJSON * setEmptyContainerWeight(int, double) = 0;
     virtual cJSON * setMaximumCapacity(int, double) = 0;
     virtual cJSON * getContainerState(int) = 0;
     virtual cJSON * setContainerState(int, const char*) = 0;
