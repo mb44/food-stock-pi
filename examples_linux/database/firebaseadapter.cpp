@@ -50,6 +50,29 @@ void FirebaseAdapter::executeCURL(char *reply, const char *cmd) {
   fclose(fpipe);
 }
 
+int FirebaseAdapter::getUniqueContainerId() {
+  string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers.json?auth="+authToken+"&shallow=true'";
+  char msg[FIREBASE_REPLY_MAX];
+
+  executeCURL(msg, cmd.c_str());
+  cJSON *reply = cJSON_Parse(msg);
+
+  int newContainerId = 0;
+  cJSON *child;
+  int i;
+  for (i=0; i<MAX_CONTAINERS; i++) {
+    child = cJSON_GetArrayItem(reply, i);
+    if (child == NULL) {
+     // Found it!
+      newContainerId = i;
+      break;
+    }
+  }
+
+  cJSON_Delete(reply);
+  return newContainerId;
+}
+
 cJSON * FirebaseAdapter::getContainerItem(int containerId) {
   string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   char msg[2048];
@@ -62,19 +85,23 @@ cJSON * FirebaseAdapter::getContainerItem(int containerId) {
 }
 
 cJSON * FirebaseAdapter::createContainerItem() {
+  int newContainerId = getUniqueContainerId();
+
+  //cout << "create container id: " << number << endl;
+
   cJSON *json = cJSON_CreateObject();
   cJSON_AddNumberToObject(json, "currentAmount", 0);
   cJSON_AddNumberToObject(json, "emptyContainerWeight", 0);
   cJSON_AddNumberToObject(json, "maxCapacity", 0);
   cJSON_AddStringToObject(json, "containerState", "measure");
-  cJSON_AddStringToObject(json, "foodName", "");
+  cJSON_AddStringToObject(json, "foodName", "-");
   cJSON_AddNumberToObject(json, "updateFrequency", 30);
 
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X POST  -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers.json?auth="+authToken+"'";
+  string cmd = "curl -X PUT -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(newContainerId)+".json?auth="+authToken+"'";
 
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -88,7 +115,7 @@ cJSON * FirebaseAdapter::createContainerItem() {
 
 cJSON * FirebaseAdapter::deleteContainerItem(int containerId) {
   string cmd = "curl -X DELETE 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -102,9 +129,9 @@ cJSON * FirebaseAdapter::setMeasurement(int containerId, double measurement) {
   cJSON_AddNumberToObject(json, "measurement", measurement);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -122,9 +149,9 @@ cJSON * FirebaseAdapter::setEmptyContainerWeight(int containerId, double emptyCo
   cJSON_AddNumberToObject(json, "emptyContainerWeight", emptyContainerWeight);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -144,7 +171,7 @@ cJSON * FirebaseAdapter::setMaximumCapacity(int containerId, double maxCapacity)
 
   string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -159,7 +186,7 @@ cJSON * FirebaseAdapter::setMaximumCapacity(int containerId, double maxCapacity)
 
 cJSON * FirebaseAdapter::getContainerState(int containerId) {
   string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+"/containerState.json?auth="+authToken+"'";
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -172,9 +199,9 @@ cJSON * FirebaseAdapter::setContainerState(int containerId, const char *state) {
   cJSON_AddStringToObject(json, "containerState", state);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
   cJSON *reply = cJSON_Parse(msg);
@@ -189,7 +216,7 @@ cJSON * FirebaseAdapter::setContainerState(int containerId, const char *state) {
 cJSON * FirebaseAdapter::getUpdateFrequency(int containerId) {
   string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+"/updateFrequency.json?auth="+authToken+"'";
 
-  char msg[2048];
+  char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
   cJSON *reply = cJSON_Parse(msg);
 
