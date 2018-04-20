@@ -1,5 +1,6 @@
 #include "auth.h"
 #include <string>
+#include <string.h>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,15 +47,4 @@ char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
   cJSON_Delete(root);
 
   return res;
-
-/*
-  //printf("%s", idToken->valuestring);  
-
-  string res(idToken->valuestring);
-
-  //cJSON_Delete(idToken);
-
-  cout << endl << "Auth: " << res << endl;
-  return res;
-*/
 }
