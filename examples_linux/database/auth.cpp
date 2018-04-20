@@ -12,7 +12,6 @@ Auth::Auth() {
 }
 
 char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
-  cout << "sign in with email and password:" << cfg.password << endl;
   FILE *fpipe;
 
   string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+cfg.apiKey+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+cfg.email+"\",\"password\":\""+cfg.password+"\",\"returnSecureToken\":true}'";
@@ -33,9 +32,6 @@ char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
   }
 
   cJSON *root = cJSON_Parse(msg);
-  //cJSON *foodTypes = cJSON_GetArrayItem(0);
-
-  //char* response = cJSON_Print(root);
 
   cJSON *reply =  cJSON_GetObjectItemCaseSensitive(root, "idToken");
   printf("Auth.cpp %s\n\n", reply->valuestring);
