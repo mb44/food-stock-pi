@@ -12,25 +12,27 @@
 
 // class IRadioCommunication;
 
+  class RF24;
+
 //class RadioCommunication : public IRadioCommunication {
 class RadioCommunication { 
   private:
-    // +1 to allow room a terminating NULL char
     int minPayloadSize;
     int maxPayloadSize;
     int payloadSizeIncrementsBy;
     int nextPayloadSize;
-    // +1 to allow room for a terminating NULL char
-    char receive_payload[MAX_PAYLOAD_SIZE+1];
+    char receivePayload[MAX_PAYLOAD_SIZE+1];
     uint64_t addrMe;
     uint64_t addrOther;
+    // Adapting to this radio
+    RF24 radio;
 
   public:
-    void init();
-    RadioCommunication(const uint64_t nodeMe, const uint64_t nodeOther);
+    void setupRadio();
+    RadioCommunication(const uint64_t addrMe, const uint64_t addrOther);
     ~RadioCommunication();
-    void send(char *msg); //void send() override;
-    void receive(char *msg); //void receive() override;
+    void send(char *sendPayload); //void send() override;
+    void receive(char *receivePayload); //void receive() override;
 };
 
 #endif  // RADIO_COMMUNICATION_H 
