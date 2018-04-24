@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "database/firebaseadapter.h"
+#include "radiocommunication/radiocommunication.h"
 
 using namespace std;
 //
