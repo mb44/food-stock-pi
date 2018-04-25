@@ -7,38 +7,62 @@
 
 using namespace std;
 
-FirebaseAdapter::FirebaseAdapter() {
-  auth = new Auth(); //new Auth(cfg);
+FirebaseAdapter::FirebaseAdapter(char *firebaseConfig) {
+  parseConfig(firebaseConfig);
+  auth = new Auth();
 
   authenticate();
 }
 
 FirebaseAdapter::~FirebaseAdapter() {
-  //free(auth);
-  // free authToken;
-  // delete jsonReply;
+  delete auth;
 }
 
 void FirebaseAdapter::authenticate() {
   char *reply = auth->signInWithEmailAndPassword(cfg);
 
-  ///if (authToken != NULL) {
-    //free(authToken);
-  //}
+  /*
+  if (authToken != NULL) {
+    free(authToken);
+  }
+  */
 
-  //authToken = (char *)malloc(AUTHTOKEN_LENGTH+1);
-  
   memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
   free(reply);
   authToken[AUTHTOKEN_LENGTH] = '\0';
 }
 
-void FirebaseAdapter::executeCURL(char *reply, const char *cmd) { 
+void FirebaseAdapter::parseConfig(char *firebaseConfig) {
+  char line[FIREBASECONFIG_LINE_LENGTH_MAX];
+
+  FILE *fp;
+
+  if ((fp = fopen(firebaseConfig, "r")) == NULL) {
+    perror("Error opening file\n");
+    exit(EXIT_FAILURE);
+  }
+
+  fgets(line, FIREBASECONFIG_LINE_LENGTH_MAX, fp);
+  sscanf(line, "projectId: %s", cfg.projectId);
+
+  fgets(line, FIREBASECONFIG_LINE_LENGTH_MAX, fp);
+  sscanf(line, "apiKey: %s", cfg.apiKey);
+
+  fgets(line, FIREBASECONFIG_LINE_LENGTH_MAX, fp);
+  sscanf(line, "email: %s", cfg.email);
+
+  fgets(line, FIREBASECONFIG_LINE_LENGTH_MAX, fp);
+  sscanf(line, "password: %s", cfg.password);
+
+  fclose(fp);
+}
+
+void FirebaseAdapter::executeCURL(char *reply, const char *cmd) {
   FILE *fpipe;
 
   if (0 == (fpipe = (FILE*)popen(cmd, "r"))) {
     perror("popen() failed");
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   int i = 0;
@@ -51,12 +75,18 @@ void FirebaseAdapter::executeCURL(char *reply, const char *cmd) {
 }
 
 int FirebaseAdapter::getUniqueContainerId() {
-  string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers.json?auth="+authToken+"&shallow=true'";
+string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers.json?auth="+authToken+"&shallow=true'";
   char msg[FIREBASE_REPLY_MAX];
 
   executeCURL(msg, cmd.c_str());
+
   cJSON *reply = cJSON_Parse(msg);
 
+  int newContainerId = cJSON_GetArraySize(reply);
+
+
+  printf("New Container Id: %d\n", newContainerId);
+  /*
   int newContainerId = 0;
   cJSON *child;
   int i;
@@ -64,17 +94,18 @@ int FirebaseAdapter::getUniqueContainerId() {
     child = cJSON_GetArrayItem(reply, i);
     if (child == NULL) {
      // Found it!
-      newContainerId = i;
+      newContainerId = i+1;
       break;
     }
   }
+  */
 
   cJSON_Delete(reply);
   return newContainerId;
 }
 
 cJSON * FirebaseAdapter::getContainerItem(int containerId) {
-  string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   char msg[2048];
 
   executeCURL(msg, cmd.c_str());
@@ -99,7 +130,7 @@ cJSON * FirebaseAdapter::createContainerItem() {
 
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PUT -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(newContainerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PUT -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(newContainerId)+".json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
@@ -114,7 +145,7 @@ cJSON * FirebaseAdapter::createContainerItem() {
 }
 
 cJSON * FirebaseAdapter::deleteContainerItem(int containerId) {
-  string cmd = "curl -X DELETE 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X DELETE 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
@@ -129,7 +160,7 @@ cJSON * FirebaseAdapter::setMeasurement(int containerId, double measurement) {
   cJSON_AddNumberToObject(json, "measurement", measurement);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
@@ -149,7 +180,7 @@ cJSON * FirebaseAdapter::setEmptyContainerWeight(int containerId, double emptyCo
   cJSON_AddNumberToObject(json, "emptyContainerWeight", emptyContainerWeight);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
@@ -169,7 +200,7 @@ cJSON * FirebaseAdapter::setMaximumCapacity(int containerId, double maxCapacity)
   cJSON_AddNumberToObject(json, "maxCapacity", maxCapacity);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
@@ -185,7 +216,7 @@ cJSON * FirebaseAdapter::setMaximumCapacity(int containerId, double maxCapacity)
 }
 
 cJSON * FirebaseAdapter::getContainerState(int containerId) {
-  string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+"/containerState.json?auth="+authToken+"'";
+  string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+"/containerState.json?auth="+authToken+"'";
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
 
@@ -199,7 +230,7 @@ cJSON * FirebaseAdapter::setContainerState(int containerId, const char *state) {
   cJSON_AddStringToObject(json, "containerState", state);
   char *jsonString = cJSON_PrintUnformatted(json);
 
-  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
+  string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
@@ -214,7 +245,7 @@ cJSON * FirebaseAdapter::setContainerState(int containerId, const char *state) {
 }
 
 cJSON * FirebaseAdapter::getUpdateFrequency(int containerId) {
-  string cmd = "curl 'https://"+cfg.projectId+".firebaseio.com/containers/"+to_string(containerId)+"/updateFrequency.json?auth="+authToken+"'";
+  string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+"/updateFrequency.json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
   executeCURL(msg, cmd.c_str());
