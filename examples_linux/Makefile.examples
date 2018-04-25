@@ -22,8 +22,8 @@ endif
 all: $(PROGRAMS)
 
 $(PROGRAMS): $(SOURCES)
-	$(CXX) $(CFLAGS) -I$(HEADER_DIR)/.. -I.. -I./database -I./radiocommunication -L$(LIB_DIR) \
-         ./database/*.c ./database/*.cpp ./radiocommunication/*.cpp $@.cpp $(LIBS) -o $@
+	$(CXX) $(CFLAGS) -I$(HEADER_DIR)/.. -I.. -I./database -I./radiocommunication -I./networkfacade -L$(LIB_DIR) \
+         ./database/*.c ./database/*.cpp ./networkfacade/*.cpp ./radiocommunication/*.cpp $@.cpp $(LIBS) -o $@
 
 clean:
 	@echo "[Cleaning]"
