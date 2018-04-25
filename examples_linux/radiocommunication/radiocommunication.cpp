@@ -43,17 +43,17 @@ void RadioCommunication::setupRadio() {
   radio.printDetails();
 
 
-  radio.openWritingPipe(0xF0F0F0F0D2LL); //radio.openWritingPipe(addrOther);
+  radio.openWritingPipe(pipeOther);
   // Open pipe number 1 (1-5)
-  radio.openReadingPipe(1, 0xF0F0F0F0E1LL);// radio.openReadingPipe(1, addrMe);
+  radio.openReadingPipe(1, pipeMe); 
 
   radio.startListening();
 }
 
-RadioCommunication::RadioCommunication(const uint64_t addrMe, const uint64_t addrOther) :
+RadioCommunication::RadioCommunication(const uint64_t pipeMe, const uint64_t pipeOther) :
   radio(RPI_V2_GPIO_P1_15, RPI_V2_GPIO_P1_24, BCM2835_SPI_SPEED_8MHZ),
-  addrMe(addrMe),
-  addrOther(addrOther)  
+  pipeMe(pipeMe),
+  pipeOther(pipeOther)  
 {
   setupRadio();
 }
