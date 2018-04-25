@@ -10,14 +10,14 @@ class FirebaseAdapter : public IDatabase {
   private:
     FirebaseConfig cfg;
     Auth *auth;
-    std::string httpHeader;
-    //char *authToken;
+    // Authtoken = 945 characters + 1 for null-terminating null-character
     char authToken[946];
     cJSON *jsonReply;
+    void parseConfig(char *firebaseConfig);
     void executeCURL(char *reply, const char *cmd);
     int getUniqueContainerId();
   public:
-    FirebaseAdapter();
+    FirebaseAdapter(char *firebaseConfig);
     virtual ~FirebaseAdapter();
     void authenticate();
     cJSON * getContainerItem(int containerId) override;
