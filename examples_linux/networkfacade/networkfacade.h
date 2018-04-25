@@ -8,8 +8,6 @@ class NetworkFacade {
   private:
     IDatabase *db;
     RadioCommunication *radio;
-    uint64_t addrMe;
-    uint64_t addrOther;
    
   public:
     void setupRadio();
