@@ -1,12 +1,10 @@
 #include "networkfacade.h"
 
 
-NetworkFacade::NetworkFacade(const uint64_t addrMe, const uint64_t addrOther) 
-: addrMe(addrMe),
-  addrOther(addrOther)
+NetworkFacade::NetworkFacade(const uint64_t pipeMe, const uint64_t pipeOther) 
 {
   db = new FirebaseAdapter("firebaseConfig.txt");
-  radio = new RadioCommunication(addrMe, addrOther); 
+  radio = new RadioCommunication(pipeMe, pipeOther); 
 }
 
 NetworkFacade::~NetworkFacade() {
