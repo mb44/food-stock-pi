@@ -22,14 +22,14 @@ class RadioCommunication {
     int payloadSizeIncrementsBy;
     int nextPayloadSize;
     char receivePayload[MAX_PAYLOAD_SIZE+1];
-    uint64_t addrMe;
-    uint64_t addrOther;
+    uint64_t pipeMe;
+    uint64_t pipeOther;
     // Adapting to this radio
     RF24 radio;
 
   public:
     void setupRadio();
-    RadioCommunication(const uint64_t addrMe, const uint64_t addrOther);
+    RadioCommunication(const uint64_t pipeMe, const uint64_t pipeOther);
     ~RadioCommunication();
     void send(char *sendPayload); //void send() override;
     uint8_t receive(char *receivePayload); //void receive() override;
