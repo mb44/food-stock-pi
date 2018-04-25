@@ -18,7 +18,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "database/firebaseadapter.h"
-#include "radiocommunication/radiocommunicationfacade.h"
+#include "networkfacade/networkfacade.h"
+//#include "radiocommunication/radiocommunication.h"
+
 
 using namespace std;
 //
@@ -70,12 +72,13 @@ using namespace std;
 const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 
 
-const int min_payload_size = 4;
-const int max_payload_size = 32;
-const int payload_size_increments_by = 1;
-int next_payload_size = min_payload_size;
+//const int min_payload_size = 4;
+//const int max_payload_size = 32;
+//const int payload_size_increments_by = 1;
+//int next_payload_size = min_payload_size;
 
-char receive_payload[max_payload_size+1]; // +1 to allow room for a terminating NULL char
+
+//char receive_payload[max_payload_size+1]; // +1 to allow room for a terminating NULL char
 
 
 /*
@@ -93,19 +96,19 @@ void setupRadio() {
 int main(int argc, char** argv){
   //RadioCommunication *radio = new RadioCommunication(0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
 
-  RadioCommunicationFacade *radioFacade = new RadioCommunicationFacade(0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
+  NetworkFacade *networkFacade = new NetworkFacade(pipes[0], pipes[1]);//0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
 
-  IDatabase *db = new FirebaseAdapter;
+  //IDatabase *db = new FirebaseAdapter;
   //cJSON *reply = db->getContainerItem(1);
   //cJSON *reply = db->getContainerState(2);
   //cJSON *reply = db->getUpdateFrequency(3);
   //cJSON *reply = db->setMaximumCapacity(0, 12.56);
   //cJSON *reply = db->setEmptyContainerWeight(1, 4.33);
   //cJSON *reply = db->setMeasurement(1, 33.87);
-  cJSON *reply = db->createContainerItem();
+  //cJSON *reply = db->createContainerItem();
 
-  char *res = cJSON_Print(reply);
-  printf("Reply: %s\n", res);
+  //char *res = cJSON_Print(reply);
+  //printf("Reply: %s\n", res);
 
   // Print preamble:
   cout << "Welcome to Food Supply Monitor\n";
@@ -113,11 +116,11 @@ int main(int argc, char** argv){
   // Setup and configure rf radio
   // setupRadio();
 
-  //char receivePayload[32+1];
+  networkFacade->handleNetwork();
 
+  //char receivePayload[32+1]; 
+  //radio->receive(receivePayload);
+  //networkFacade->handleNetwork();
 
-   radioFacade->handleRadioCommunication();
-
-   delete radioFacade;
-   delete db;
+  delete networkFacade;
 }
