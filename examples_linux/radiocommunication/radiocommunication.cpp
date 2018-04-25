@@ -43,9 +43,9 @@ void RadioCommunication::setupRadio() {
   radio.printDetails();
 
 
-  radio.openWritingPipe(addrOther);
+  radio.openWritingPipe(0xF0F0F0F0D2LL); //radio.openWritingPipe(addrOther);
   // Open pipe number 1 (1-5)
-  radio.openReadingPipe(1, addrMe);
+  radio.openReadingPipe(1, 0xF0F0F0F0E1LL);// radio.openReadingPipe(1, addrMe);
 
   radio.startListening();
 }
@@ -55,7 +55,6 @@ RadioCommunication::RadioCommunication(const uint64_t addrMe, const uint64_t add
   addrMe(addrMe),
   addrOther(addrOther)  
 {
-
   setupRadio();
 }
 
@@ -66,22 +65,31 @@ void RadioCommunication::send(char *sendPayload) {
 }
 
 //void RadioCommunication::receive(char *msg) {
-void RadioCommunication::receive(char *receivePayload) {
-  printf("Ready to receive\n");
+uint8_t RadioCommunication::receive(char *receivePayload) {
+  printf("RadioCommunication - Ready to receive\n");
   // If there is data ready
-  if (radio.available()) {
+  //radio.printDetails();
+  radio.startListening();
 
-    uint8_t len;
-    // Dump the payload until we've received everything
-    while (radio.available()) {
-      // Fetch the payload, and see if this was the last one
-      len = radio.getDynamicPayloadSize();
-      radio.read(receivePayload, len);
+  while (1) {
+    if (radio.available()) {
 
-      //  Print to stdout
-      printf("Got payload size=%i value=%s\n\r", len, receivePayload);
+      uint8_t len;
+      // Dump the payload until we've received everything
+      while (radio.available()) {
+        printf("Reading...\n");
+        // Fetch the payload, and see if this was the last one
+        len = radio.getDynamicPayloadSize();
+        radio.read(receivePayload, len);
+
+        // Put a zero at the end for easy printing
+        receivePayload[len] = 0;
+
+        // Print to stdout
+        //printf("Got payload size=%i value=%s\n\r", len, receivePayload);
+      }
+      radio.stopListening();
+      return len;
     }
-      
-    radio.stopListening();
   }
 }
