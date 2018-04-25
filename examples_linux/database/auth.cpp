@@ -14,8 +14,8 @@ Auth::Auth() {
 char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
   FILE *fpipe;
 
-  string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+cfg.apiKey+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+cfg.email+"\",\"password\":\""+cfg.password+"\",\"returnSecureToken\":true}'";
-   
+string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+string(cfg.apiKey)+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+string(cfg.email)+"\",\"password\":\""+string(cfg.password)+"\",\"returnSecureToken\":true}'";
+ 
   const char* signInCommand = tmp.c_str();
   char msg[2048];
 
