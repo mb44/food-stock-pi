@@ -31,7 +31,7 @@ class RadioCommunication {
     void setupRadio();
     RadioCommunication(const uint64_t pipeMe, const uint64_t pipeOther);
     ~RadioCommunication();
-    void send(char *sendPayload); //void send() override;
+    void send(char *sendPayload, uint8_t length); //void send() override;
     uint8_t receive(char *receivePayload); //void receive() override;
 };
 
