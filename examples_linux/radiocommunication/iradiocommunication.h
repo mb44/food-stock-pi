@@ -4,8 +4,8 @@
 class IRadioCommunication {
   public:
     virtual ~IRadioCommunication() {};
-    virtual void send() = 0;
-    virtual void receive() = 0;
+    virtual void send(char *sendPayload, uint8_t length) = 0;
+    virtual uint8_t receive(char receivePayload) = 0;
 };
 
 #endif // _IRADIO_COMMMUNICATION
