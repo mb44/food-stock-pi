@@ -22,6 +22,8 @@ void NetworkFacade::handleNetwork() {
     length = radio->receive(receivePayload);
     printf("Got payload size=%i value=%s\n\r", length, receivePayload);
 
+    radio->send(receivePayload, length);
+
     // TODO
     // 1. Check msg type
     // 2. Query Database

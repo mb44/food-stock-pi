@@ -61,7 +61,10 @@ RadioCommunication::RadioCommunication(const uint64_t pipeMe, const uint64_t pip
 RadioCommunication::~RadioCommunication() {
 }
 
-void RadioCommunication::send(char *sendPayload) {
+void RadioCommunication::send(char *sendPayload, uint8_t length) {
+  radio.stopListening();
+  radio.write(sendPayload, length);
+  radio.startListening();
 }
 
 //void RadioCommunication::receive(char *msg) {
