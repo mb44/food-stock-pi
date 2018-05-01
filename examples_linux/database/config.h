@@ -12,10 +12,10 @@
 
 
 typedef struct {
-  char projectId[FIREBASECONFIG_VALUE_LENGTH_MAX]; // ="foodwastereduction-6ca48";
-  char apiKey[FIREBASECONFIG_VALUE_LENGTH_MAX]; // = "AIzaSyBxlo2I0gI-2c5nb3w9feXabKInEvVotj8";
-  char email[FIREBASECONFIG_VALUE_LENGTH_MAX]; // = "mortenbeuchert@gmail.com";
-  char password[FIREBASECONFIG_VALUE_LENGTH_MAX]; // = "123456";
+  char projectId[FIREBASECONFIG_VALUE_LENGTH_MAX];
+  char apiKey[FIREBASECONFIG_VALUE_LENGTH_MAX];
+  char email[FIREBASECONFIG_VALUE_LENGTH_MAX];
+  char password[FIREBASECONFIG_VALUE_LENGTH_MAX];
 } FirebaseConfig;
 
 #endif
