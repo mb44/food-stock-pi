@@ -7,11 +7,11 @@
 class NetworkFacade { 
   private:
     IDatabase *db;
-    RadioCommunication *radio;
+    IRadioCommunication *radio;
    
   public:
     void setupRadio();
-    NetworkFacade(const uint64_t addrMe, const uint64_t addrOther);
+    NetworkFacade(const uint64_t pipes[2]);
     ~NetworkFacade();
     void handleNetwork(); 
 };
