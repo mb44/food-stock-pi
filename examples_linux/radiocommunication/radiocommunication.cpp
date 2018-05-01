@@ -4,7 +4,7 @@
 
 void RadioCommunication::setupRadio() {
   minPayloadSize = MIN_PAYLOAD_SIZE;
-  maxPayloadSize = MAX_PAYLOAD_SIZE;
+  maxPayloadSize = MAX_RCV_PAYLOAD_SIZE;
   payloadSizeIncrementsBy = PAYLOAD_SIZE_INCREMENTS_BY;
   nextPayloadSize = minPayloadSize;
 
@@ -43,18 +43,18 @@ void RadioCommunication::setupRadio() {
   radio.printDetails();
 
 
-  radio.openWritingPipe(pipeOther);
+  radio.openWritingPipe(radioPipes[1]);
   // Open pipe number 1 (1-5)
-  radio.openReadingPipe(1, pipeMe); 
+  radio.openReadingPipe(1, radioPipes[0]); 
 
   radio.startListening();
 }
 
-RadioCommunication::RadioCommunication(const uint64_t pipeMe, const uint64_t pipeOther) :
-  radio(RPI_V2_GPIO_P1_15, RPI_V2_GPIO_P1_24, BCM2835_SPI_SPEED_8MHZ),
-  pipeMe(pipeMe),
-  pipeOther(pipeOther)  
+RadioCommunication::RadioCommunication(const uint64_t pipes[2]) :
+  radio(RPI_V2_GPIO_P1_15, RPI_V2_GPIO_P1_24, BCM2835_SPI_SPEED_8MHZ)
 {
+  radioPipes[0] = pipes[0];
+  radioPipes[1] = pipes[1];
   setupRadio();
 }
 
