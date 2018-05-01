@@ -96,7 +96,7 @@ void setupRadio() {
 int main(int argc, char** argv){
   //RadioCommunication *radio = new RadioCommunication(0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
 
-  NetworkFacade *networkFacade = new NetworkFacade(pipes[0], pipes[1]);//0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
+  NetworkFacade *networkFacade = new NetworkFacade(pipes);//0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
 
   //IDatabase *db = new FirebaseAdapter;
   //cJSON *reply = db->getContainerItem(1);
