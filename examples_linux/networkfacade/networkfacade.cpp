@@ -1,5 +1,7 @@
 #include "networkfacade.h"
 #include "../database/cjson.h"
+#include <inttypes.h>
+//#include <iostream>
 
 NetworkFacade::NetworkFacade(const uint64_t pipes[2]) 
 {
@@ -37,7 +39,7 @@ void NetworkFacade::handleNetwork() {
     printf("Message type : %d\n", msgType);
 
     int id = receivePayload[1]<<8 | receivePayload[2];
-    long measurement;
+    int measurement;
     cJSON *reply;
     switch (msgType) {
 	case 0:
@@ -51,14 +53,11 @@ void NetworkFacade::handleNetwork() {
         case 2:
           // Send measurement
 	  //const cJSON* reply;
-
-          measurement = receivePayload[3]<<32 | receivePayload[4]<<16 | receivePayload[5]<<8 | receivePayload[6];
+          measurement = receivePayload[3]<<24 | receivePayload[4]<<16 | receivePayload[5]<<8 | receivePayload[6];
           // Convert from decigrams to grams          
           measurement /= 10;
 
-
-          //printf("Size of long: %l\n ", sizeof(long));
-          printf("Measurement: %ld grams\n", measurement);
+          printf("Measurement: %d grams\n", measurement);
         //default:
           //break;
     }
