@@ -42,15 +42,15 @@ void NetworkFacade::handleNetwork() {
     int measurement;
     cJSON *reply;
     switch (msgType) {
-	case 0:
+	case RADIO_RCV_MSG_TYPE_GET_CONTAINER_ID:
           // Get container id
           reply = db->createContainerItem();
           delete reply;
           break;
-        case 1:
+        case RADIO_RCV_MSG_TYPE_DELETE_CONTAINER:
           break;
           // Delete container
-        case 2:
+        case RADIO_RCV_MSG_TYPE_MEASUREMENT:
           // Send measurement
 	  //const cJSON* reply;
           measurement = receivePayload[3]<<24 | receivePayload[4]<<16 | receivePayload[5]<<8 | receivePayload[6];
