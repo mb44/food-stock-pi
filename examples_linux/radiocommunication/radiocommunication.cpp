@@ -63,6 +63,7 @@ RadioCommunication::~RadioCommunication() {
 
 void RadioCommunication::send(char *sendPayload, uint8_t length) {
   radio.stopListening();
+
   radio.write(sendPayload, length);
   radio.startListening();
 }
