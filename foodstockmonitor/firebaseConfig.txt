@@ -1,0 +1,4 @@
+projectId: foodwastereduction-6ca48
+apiKey: AIzaSyBxlo2I0gI-2c5nb3w9feXabKInEvVotj8
+email: mortenbeuchert@gmail.com
+password: 123456
