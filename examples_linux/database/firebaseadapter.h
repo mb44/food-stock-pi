@@ -23,9 +23,9 @@ class FirebaseAdapter : public IDatabase {
     cJSON * getContainerItem(int containerId) override;
     cJSON * createContainerItem() override;
     cJSON * deleteContainerItem(int containerId) override;
-    cJSON * setMeasurement(int containerId, double measurement) override;
-    cJSON * setEmptyContainerWeight(int containerId, double measurement) override;
-    cJSON * setMaximumCapacity(int containerId, double maxCapacity) override;
+    cJSON * setMeasurement(int containerId, float measurement) override;
+    cJSON * setEmptyContainerWeight(int containerId, float measurement) override;
+    cJSON * setMaximumCapacity(int containerId, float maxCapacity) override;
     cJSON * getContainerState(int containerId) override;
     cJSON * setContainerState(int containerId, const char *state) override;
     cJSON * getUpdateFrequency(int containerId) override;
