@@ -155,7 +155,7 @@ cJSON * FirebaseAdapter::deleteContainerItem(int containerId) {
 
 }
 
-cJSON * FirebaseAdapter::setMeasurement(int containerId, double measurement) {
+cJSON * FirebaseAdapter::setMeasurement(int containerId, float measurement) {
   cJSON *json = cJSON_CreateObject();
   cJSON_AddNumberToObject(json, "measurement", measurement);
   char *jsonString = cJSON_PrintUnformatted(json);
@@ -175,7 +175,7 @@ cJSON * FirebaseAdapter::setMeasurement(int containerId, double measurement) {
 
 }
 
-cJSON * FirebaseAdapter::setEmptyContainerWeight(int containerId, double emptyContainerWeight) {
+cJSON * FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyContainerWeight) {
   cJSON *json = cJSON_CreateObject();
   cJSON_AddNumberToObject(json, "emptyContainerWeight", emptyContainerWeight);
   char *jsonString = cJSON_PrintUnformatted(json);
@@ -195,7 +195,7 @@ cJSON * FirebaseAdapter::setEmptyContainerWeight(int containerId, double emptyCo
 
 }
 
-cJSON * FirebaseAdapter::setMaximumCapacity(int containerId, double maxCapacity) {
+cJSON * FirebaseAdapter::setMaximumCapacity(int containerId, float maxCapacity) {
   cJSON *json = cJSON_CreateObject();
   cJSON_AddNumberToObject(json, "maxCapacity", maxCapacity);
   char *jsonString = cJSON_PrintUnformatted(json);

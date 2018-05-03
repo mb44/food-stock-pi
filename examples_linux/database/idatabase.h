@@ -11,9 +11,9 @@ class IDatabase {
     virtual cJSON * getContainerItem(int) = 0;
     virtual cJSON * createContainerItem() = 0;
     virtual cJSON * deleteContainerItem(int) = 0;
-    virtual cJSON * setMeasurement(int, double) = 0;
-    virtual cJSON * setEmptyContainerWeight(int, double) = 0;
-    virtual cJSON * setMaximumCapacity(int, double) = 0;
+    virtual cJSON * setMeasurement(int, float) = 0;
+    virtual cJSON * setEmptyContainerWeight(int, float) = 0;
+    virtual cJSON * setMaximumCapacity(int, float) = 0;
     virtual cJSON * getContainerState(int) = 0;
     virtual cJSON * setContainerState(int, const char*) = 0;
     virtual cJSON * getUpdateFrequency(int) = 0;
