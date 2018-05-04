@@ -7,10 +7,8 @@
 #include "cjson.h"
 
 class Auth {
-  //private:
-    //FirebaseConfig cfg;
   public:
-    Auth();//FirebaseConfig config);
+    Auth();
     ~Auth() { std::cout << "Auth destructed" << std::endl; };
     char * signInWithEmailAndPassword(FirebaseConfig config);
 };
