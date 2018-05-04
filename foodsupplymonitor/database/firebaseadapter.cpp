@@ -85,7 +85,7 @@ string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers.
   int newContainerId = cJSON_GetArraySize(reply);
 
 
-  printf("New Container Id: %d\n", newContainerId);
+  //printf("New Container Id: %d\n", newContainerId);
   /*
   int newContainerId = 0;
   cJSON *child;
@@ -115,10 +115,8 @@ cJSON * FirebaseAdapter::getContainerItem(int containerId) {
   return reply;
 }
 
-cJSON * FirebaseAdapter::createContainerItem() {
+int FirebaseAdapter::createContainerItem() {
   int newContainerId = getUniqueContainerId();
-
-  //cout << "create container id: " << number << endl;
 
   cJSON *json = cJSON_CreateObject();
   cJSON_AddNumberToObject(json, "currentAmount", 0);
@@ -139,9 +137,10 @@ cJSON * FirebaseAdapter::createContainerItem() {
 
   // Clean up
   cJSON_Delete(json);
+  cJSON_Delete(reply);
   delete jsonString;
 
-  return reply;
+  return newContainerId;
 }
 
 cJSON * FirebaseAdapter::deleteContainerItem(int containerId) {
