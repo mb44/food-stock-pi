@@ -8,7 +8,6 @@
 using namespace std;
 
 Auth::Auth() {
-  //cfg = config;
 }
 
 char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
@@ -34,7 +33,7 @@ string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/ve
   cJSON *root = cJSON_Parse(msg);
 
   cJSON *reply =  cJSON_GetObjectItemCaseSensitive(root, "idToken");
-  printf("Auth.cpp %s\n\n", reply->valuestring);
+  printf("Firebase auth key: %s\n\n", reply->valuestring);
 
   pclose(fpipe);
 
