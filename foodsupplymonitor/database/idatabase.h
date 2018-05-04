@@ -1,6 +1,7 @@
 #ifndef _DATABASE_H
 #define _DATABASE_H
 
+#include "dbdefines.h"
 #include <iostream>
 #include <string>
 #include "cjson.h"
