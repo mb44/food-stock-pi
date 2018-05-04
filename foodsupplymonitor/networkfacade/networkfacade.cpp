@@ -5,7 +5,7 @@
 NetworkFacade::NetworkFacade(const uint64_t pipes[2]) 
 {
   db = new FirebaseAdapter("firebaseConfig.txt");
-  radio = new RadioCommunication(pipes); 
+  radio = new RadioAdapter(pipes); 
 }
 
 NetworkFacade::~NetworkFacade() {
@@ -15,10 +15,11 @@ NetworkFacade::~NetworkFacade() {
 
 void NetworkFacade::handleNetwork() {
   char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
-  char sendPayload[10]; //MAX_SEND_PAYLOAD_SIZE+1];
+  char sendPayload[MAX_SEND_PAYLOAD_SIZE+1];
   printf("Handle radio communication\n");
 
   uint8_t length = 0;
+  // Listen, forever
   while (1) {
     length = radio->receive(receivePayload);
     printf("Got payload size=%i value=%s\n\r", length, receivePayload);
@@ -37,30 +38,46 @@ void NetworkFacade::handleNetwork() {
     printf("Message type : %d\n", msgType);
 
     int id = receivePayload[1]<<8 | receivePayload[2];
+    int newContainerId;
     int measurementDecigrams;
     float measurementKilos;
     char *containerState;
-    int updateFrequency;
+    int updateFrequencySeconds;
     cJSON *reply;
     switch (msgType) {
 	case RADIO_RCV_MSG_TYPE_GET_CONTAINER_ID:
-          // Get container id
-          reply = db->createContainerItem();
-          delete reply;
+          // Get container id from database
+          newContainerId = db->createContainerItem();
+
+	  // Set message type
+	  sendPayload[0] = 0;
+
+	  // Set scale id
+	  sendPayload[1] = receivePayload[2];
+	  sendPayload[2] = receivePayload[3];
+
+	  // Set new id
+	  sendPayload[3] = newContainerId>>8;
+	  sendPayload[4] = newContainerId;
+
+	  printf("Send payload:\n");
+	  printf("Byte 0: %d\n", sendPayload[0]);
+	  printf("Byte 1: %d\n", sendPayload[1]);
+	  printf("Byte 2: %d\n", sendPayload[2]);
+	  printf("Byte 3: %d\n", sendPayload[3]);
+	  printf("Byte 4: %d\n", sendPayload[5]);
+
+	  radio->send(sendPayload, MAX_SEND_PAYLOAD_SIZE);
           break;
         case RADIO_RCV_MSG_TYPE_DELETE_CONTAINER:
           break;
           // Delete container
         case RADIO_RCV_MSG_TYPE_MEASUREMENT:
-          // 1. Get container state
+          // 1. Extract measurement
           measurementDecigrams = receivePayload[3]<<24 | receivePayload[4]<<16 | receivePayload[5]<<8 | receivePayload[6];
           // Convert from decigrams to Kilograms
           measurementKilos = measurementDecigrams / 100.0;
-
-          //printf("Measurement: %d grams\n", measurement);
-          //printf("Measurement in kilos: %f\n", measurementKilos);
-
-	  // 2. Get container state
+	  // 2. Get containerState from database
           reply = db->getContainerState(id);
           containerState = reply->valuestring;
           //printf("Container state: %s\n", containerState);
@@ -78,21 +95,21 @@ void NetworkFacade::handleNetwork() {
           delete containerState;
           //	cJSON_Delete(reply);
           reply = db->getUpdateFrequency(id);
-
 	  //const char *temp = cJSON_Print(reply);
-
 	  //printf("Reply: %s\n", temp);
-	  updateFrequency = reply->valueint;
+	  updateFrequencySeconds = reply->valueint;
 	  cJSON_Delete(reply);
-          //printf("Update frequency: %d\n", updateFrequency);
+          printf("Update frequency (seconds): %d\n", updateFrequencySeconds);
 
           sendPayload[0] = RADIO_SEND_MSG_TYPE_SET_UPDATE_FREQUENCY;
 	  // Add Id
 	  sendPayload[1] = id>>8;
 	  sendPayload[2] = id;
 	  // Add UpdateFrequency
-	  sendPayload[3] = updateFrequency>>8;
-	  sendPayload[4] = updateFrequency;
+	  sendPayload[3] = updateFrequencySeconds>>24;
+	  sendPayload[4] = updateFrequencySeconds>>16;
+	  sendPayload[5] = updateFrequencySeconds>>8;
+	  sendPayload[6] = updateFrequencySeconds;
 
 	  printf("Sending: \n");
 	  printf("Byte 0: %d\n: ", sendPayload[0]);
@@ -100,18 +117,11 @@ void NetworkFacade::handleNetwork() {
 	  printf("Byte 2: %d\n: ", sendPayload[2]);
 	  printf("Byte 3: %d\n: ", sendPayload[3]);
 	  printf("Byte 4: %d\n: ", sendPayload[4]);
+	  printf("Byte 5: %d\n: ", sendPayload[5]);
+	  printf("Byte 6: %d\n: ", sendPayload[6]);
 
-/*
-	  printf("Sending.\n");
-	  sendPayload[0] = 2;
-	  sendPayload[1] = 0;
-	  sendPayload[2] = 1;
-	  sendPayload[3] = 0;
-	  sendPayload[4] = 60;
-*/
 	  // 5. Send reply to Scale
 	  radio->send(sendPayload, MAX_SEND_PAYLOAD_SIZE);
-
 	  break;
     }
   }
