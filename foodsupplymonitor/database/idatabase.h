@@ -9,7 +9,7 @@ class IDatabase {
   public:
     virtual ~IDatabase() {};
     virtual cJSON * getContainerItem(int) = 0;
-    virtual cJSON * createContainerItem() = 0;
+    virtual int createContainerItem() = 0;
     virtual cJSON * deleteContainerItem(int) = 0;
     virtual cJSON * setMeasurement(int, float) = 0;
     virtual cJSON * setEmptyContainerWeight(int, float) = 0;
