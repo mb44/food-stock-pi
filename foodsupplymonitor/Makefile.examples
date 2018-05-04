@@ -1,14 +1,14 @@
 #############################################################################
 #
-# Makefile for librf24 examples on Linux
+# Makefile for foodsupplymonitor on Linux
 #
 # License: GPL (General Public License)
-# Author:  gnulnulf <arco@appeltaart.mine.nu>
-# Date:    2013/02/07 (version 1.0)
+# Author:  Morten Beuchert <214565@via.dk>
+# Date:    2018/05/04 (version 1.0)
 #
 # Description:
 # ------------
-# use make all and make install to install the examples
+# use make all and make install to install the program
 #
 
 BINARY_PREFIX = rf24

@@ -1,10 +1,10 @@
 #############################################################################
 #
-# Makefile for librf24 examples on Linux
+# Makefile for foodsupplymonitor on Linux
 #
 # License: GPL (General Public License)
-# Author:  gnulnulf <arco@appeltaart.mine.nu>
-# Date:    2013/02/07 (version 1.0)
+# Author:  Morten Beuchert <214565@via.dk>
+# Date:    2018/05/04 (version 1.0)
 #
 # Description:
 # ------------
@@ -18,7 +18,6 @@ endif
 include ../Makefile.inc
 
 # define all programs
-#PROGRAMS = gettingstarted gettingstarted_call_response transfer pingpair_dyn foodsupplymonitor
 PROGRAMS = foodsupplymonitor
 
 include Makefile.examples
