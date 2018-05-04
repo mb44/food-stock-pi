@@ -11,7 +11,7 @@ class FirebaseAdapter : public IDatabase {
     FirebaseConfig cfg;
     Auth *auth;
     // Authtoken = 945 characters + 1 for null-terminating null-character
-    char authToken[946];
+    char authToken[AUTHTOKEN_LENGTH+1];
     cJSON *jsonReply;
     void parseConfig(char *firebaseConfig);
     void executeCURL(char *reply, const char *cmd);
@@ -21,7 +21,7 @@ class FirebaseAdapter : public IDatabase {
     virtual ~FirebaseAdapter();
     void authenticate();
     cJSON * getContainerItem(int containerId) override;
-    cJSON * createContainerItem() override;
+    int createContainerItem() override;
     cJSON * deleteContainerItem(int containerId) override;
     cJSON * setMeasurement(int containerId, float measurement) override;
     cJSON * setEmptyContainerWeight(int containerId, float measurement) override;
