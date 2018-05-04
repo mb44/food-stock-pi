@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include "defines.h"
+#include "dbdefines.h"
 
 typedef struct {
   char projectId[FIREBASECONFIG_VALUE_LENGTH_MAX];
