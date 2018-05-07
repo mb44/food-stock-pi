@@ -15,20 +15,19 @@ class FirebaseAdapter : public IDatabase {
     cJSON *jsonReply;
     void parseConfig(char *firebaseConfig);
     void executeCURL(char *reply, const char *cmd);
-    int getUniqueContainerId();
   public:
     FirebaseAdapter(char *firebaseConfig);
     virtual ~FirebaseAdapter();
     void authenticate();
-    cJSON * getContainerItem(int containerId) override;
-    int createContainerItem() override;
-    cJSON * deleteContainerItem(int containerId) override;
-    cJSON * setMeasurement(int containerId, float measurement) override;
-    cJSON * setEmptyContainerWeight(int containerId, float measurement) override;
-    cJSON * setMaximumCapacity(int containerId, float maxCapacity) override;
-    cJSON * getContainerState(int containerId) override;
-    cJSON * setContainerState(int containerId, const char *state) override;
-    cJSON * getUpdateFrequency(int containerId) override;
+    //cJSON * getContainerItem(int containerId) override;
+    int createContainerItem(int containerId) override;
+    int deleteContainerItem(int containerId) override;
+    int setMeasurement(int containerId, float measurement) override;
+    int setEmptyContainerWeight(int containerId, float measurement) override;
+    int setMaximumCapacity(int containerId, float maxCapacity) override;
+    int getContainerState(int containerId, char* state) override;
+    int setContainerState(int containerId, const char *state) override;
+    int getUpdateFrequency(int containerId, int *updateFrequency) override;
 };
 
 #endif // FIREBASEADAPTER_H
