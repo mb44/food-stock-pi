@@ -9,15 +9,15 @@
 class IDatabase {
   public:
     virtual ~IDatabase() {};
-    virtual cJSON * getContainerItem(int) = 0;
-    virtual int createContainerItem() = 0;
-    virtual cJSON * deleteContainerItem(int) = 0;
-    virtual cJSON * setMeasurement(int, float) = 0;
-    virtual cJSON * setEmptyContainerWeight(int, float) = 0;
-    virtual cJSON * setMaximumCapacity(int, float) = 0;
-    virtual cJSON * getContainerState(int) = 0;
-    virtual cJSON * setContainerState(int, const char*) = 0;
-    virtual cJSON * getUpdateFrequency(int) = 0;
+    //virtual cJSON * getContainerItem(int) = 0;
+    virtual int createContainerItem(int) = 0;
+    virtual int deleteContainerItem(int) = 0;
+    virtual int setMeasurement(int, float) = 0;
+    virtual int setEmptyContainerWeight(int, float) = 0;
+    virtual int setMaximumCapacity(int, float) = 0;
+    virtual int getContainerState(int, char*) = 0;
+    virtual int setContainerState(int, const char*) = 0;
+    virtual int getUpdateFrequency(int, int*) = 0;
 };
 
 #endif
