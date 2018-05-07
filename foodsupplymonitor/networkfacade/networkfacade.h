@@ -1,13 +1,13 @@
 #ifndef _NETWORK_FACADE_H
 #define _NETWORK_NACADE_H
 
-#include "../radiocommunication/radioadapter.h"
+#include "../radiocommunication/rf24adapter.h"
 #include "../database/firebaseadapter.h"
 
 class NetworkFacade { 
   private:
     IDatabase *db;
-    IRadioCommunication *radio;
+    IRadio *radio;
    
   public:
     void setupRadio();
