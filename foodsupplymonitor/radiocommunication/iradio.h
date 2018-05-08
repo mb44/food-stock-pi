@@ -7,7 +7,6 @@
 class IRadio {
   public:
     virtual ~IRadio() {};
-    virtual void confirmCreateContainer(int scaleId) = 0;
     virtual void setUpdateFrequency(int scaleId, int updateFrequency) = 0;
     virtual void powerDown(int scaleId) = 0;
     //virtual void send(char *sendPayload, uint8_t length) = 0;
