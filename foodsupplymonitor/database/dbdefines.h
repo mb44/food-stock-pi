@@ -8,4 +8,8 @@
 #define FIREBASECONFIG_LINE_LENGTH_MAX 200
 #define FIREBASECONFIG_VALUE_LENGTH_MAX 150
 
+#define CURRENT_AMOUNT "currentAmount"
+#define MAXIMUM_CAPACITY "maximumCapacity"
+#define EMPTY_CONTAINER_WEIGHT "emptyContainerWeight"
+
 #endif // DB_DEFINES_H
