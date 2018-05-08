@@ -4,6 +4,7 @@
 #include <string.h>
 #include <string>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -74,25 +75,12 @@ void FirebaseAdapter::executeCURL(char *reply, const char *cmd) {
   fclose(fpipe);
 }
 
-/*
-cJSON * FirebaseAdapter::getContainerItem(int containerId) {
-  string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
-  char msg[2048];
-
-  executeCURL(msg, cmd.c_str());
-
-  cJSON *reply = cJSON_Parse(msg);
-
-  return reply;
-}
-*/
-
 int FirebaseAdapter::createContainerItem(int containerId) {
   cJSON *json = cJSON_CreateObject();
   cJSON_AddNumberToObject(json, "currentAmount", 0);
   cJSON_AddNumberToObject(json, "emptyContainerWeight", 0);
   cJSON_AddNumberToObject(json, "maxCapacity", 0);
-  cJSON_AddStringToObject(json, "containerState", "measure");
+  cJSON_AddStringToObject(json, "containerState", "currentAmount");
   cJSON_AddStringToObject(json, "foodName", "-");
   cJSON_AddNumberToObject(json, "updateFrequency", 30);
 
@@ -126,7 +114,8 @@ int FirebaseAdapter::deleteContainerItem(int containerId) {
 
 int FirebaseAdapter::setMeasurement(int containerId, float measurement) {
   cJSON *json = cJSON_CreateObject();
-  cJSON_AddNumberToObject(json, "measurement", measurement);
+  double roundedMeasurement = round(measurement*1000.0)/1000.0;
+  cJSON_AddNumberToObject(json, CURRENT_AMOUNT, measurement);
   char *jsonString = cJSON_PrintUnformatted(json);
 
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
@@ -146,7 +135,8 @@ int FirebaseAdapter::setMeasurement(int containerId, float measurement) {
 
 int FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyContainerWeight) {
   cJSON *json = cJSON_CreateObject();
-  cJSON_AddNumberToObject(json, "emptyContainerWeight", emptyContainerWeight);
+  double roundedEmptyContainerWeight = round(emptyContainerWeight*1000.0)/1000.0;
+  cJSON_AddNumberToObject(json, EMPTY_CONTAINER_WEIGHT, emptyContainerWeight);
   char *jsonString = cJSON_PrintUnformatted(json);
 
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
@@ -166,7 +156,8 @@ int FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyContain
 
 int FirebaseAdapter::setMaximumCapacity(int containerId, float maxCapacity) {
   cJSON *json = cJSON_CreateObject();
-  cJSON_AddNumberToObject(json, "maxCapacity", maxCapacity);
+  double roundedMaxCapacity = round(maxCapacity*1000.0)/1000.0;
+  cJSON_AddNumberToObject(json, MAXIMUM_CAPACITY, maxCapacity);
   char *jsonString = cJSON_PrintUnformatted(json);
 
   string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
