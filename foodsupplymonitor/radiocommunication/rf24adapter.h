@@ -27,7 +27,6 @@ class RF24Adapter : public IRadio {
     RF24Adapter(const uint64_t pipes[2]);
     ~RF24Adapter();
     uint8_t receive(char *receivePayload);
-    void confirmCreateContainer(int scaleId);
     void powerDown(int scaleId);
     void setUpdateFrequency(int scaleId, int updateFrequency);
 };
