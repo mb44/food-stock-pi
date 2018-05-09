@@ -1,0 +1,3 @@
+/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/CMakeFiles/rebuild_cache.dir
+/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/CMakeFiles/edit_cache.dir
+/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/CMakeFiles/runTests.dir
