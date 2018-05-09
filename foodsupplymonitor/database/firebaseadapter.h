@@ -9,7 +9,7 @@
 class FirebaseAdapter : public IDatabase {
   private:
     FirebaseConfig cfg;
-    Auth *auth;
+    IAuth *auth;
     // Authtoken = 945 characters + 1 for null-terminating null-character
     char authToken[AUTHTOKEN_LENGTH+1];
     cJSON *jsonReply;
