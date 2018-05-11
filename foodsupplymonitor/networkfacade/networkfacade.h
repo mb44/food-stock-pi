@@ -1,19 +1,19 @@
-#ifndef _NETWORK_FACADE_H
-#define _NETWORK_NACADE_H
+#ifndef NETWORK_FACADE_H
+#define NETWORK_NACADE_H
 
-#include "../radiocommunication/rf24adapter.h"
-#include "../database/firebaseadapter.h"
+#include "inetworkfacade.h"
 
-class NetworkFacade { 
+
+class NetworkFacade : public INetworkFacade { 
   private:
     IDatabase *db;
     IRadio *radio;
+    void setupRadio();
    
   public:
-    void setupRadio();
-    NetworkFacade(const uint64_t pipes[2]);
-    ~NetworkFacade();
-    void handleNetwork(); 
+    NetworkFacade(IRadio *r, IDatabase *d);
+    virtual ~NetworkFacade();
+    void handleNetwork() override; 
 };
 
-#endif  // NETWORK_fACADE_H 
+#endif  // NETWORK_FACADE_H 
