@@ -1,5 +1,5 @@
-#ifndef _DATABASE_H
-#define _DATABASE_H
+#ifndef IDATABASE_H
+#define IDATABASE_H
 
 #include "dbdefines.h"
 #include <iostream>
@@ -8,11 +8,11 @@
 
 class IDatabase {
   public:
-    virtual ~IDatabase() {};
-    //virtual cJSON * getContainerItem(int) = 0;
+    virtual ~IDatabase() {}
+    virtual int containerItemExists(int, int*) = 0;
     virtual int createContainerItem(int) = 0;
     virtual int deleteContainerItem(int) = 0;
-    virtual int setMeasurement(int, float) = 0;
+    virtual int setCurrentAmount(int, float) = 0;
     virtual int setEmptyContainerWeight(int, float) = 0;
     virtual int setMaximumCapacity(int, float) = 0;
     virtual int getContainerState(int, char*) = 0;
