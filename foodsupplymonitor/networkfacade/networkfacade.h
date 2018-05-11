@@ -6,8 +6,8 @@
 
 class NetworkFacade : public INetworkFacade { 
   private:
-    IDatabase *db;
     IRadio *radio;
+    IDatabase *db;
     void setupRadio();
    
   public:
