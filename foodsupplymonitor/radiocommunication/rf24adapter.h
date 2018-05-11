@@ -21,14 +21,14 @@ class RF24Adapter : public IRadio {
     RF24 radio;
     char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
     char sendPayload[MAX_SEND_PAYLOAD_SIZE+1];
+    void setupRadio();
 
   public:
-    void setupRadio();
     RF24Adapter(const uint64_t pipes[2]);
     ~RF24Adapter();
-    uint8_t receive(char *receivePayload);
-    void powerDown(int scaleId);
-    void setUpdateFrequency(int scaleId, int updateFrequency);
+    uint8_t receive(char *receivePayload) override;
+    void powerDown(int scaleId) override;
+    void setUpdateFrequency(int scaleId, int updateFrequency) override;
 };
 
 #endif  // RF24_ADAPTER_H 
