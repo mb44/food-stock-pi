@@ -8,6 +8,7 @@
 
 class IAuth {
   public:
+    virtual ~IAuth() {}
     virtual char * signInWithEmailAndPassword(FirebaseConfig config) = 0;
 };
 
