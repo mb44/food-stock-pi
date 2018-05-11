@@ -96,20 +96,6 @@ uint8_t RF24Adapter::receive(char *receivePayload) {
   }
 }
 
-/*
-void RF24Adapter::confirmCreateContainer(int scaleId) {
-  radio.stopListening();
-
-  sendPayload[0] = RADIO_SEND_MSG_TYPE_CONFIRM_CREATE_CONTAINER;
-  sendPayload[1] = scaleId>>8;
-  sendPayload[2] = scaleId;
-
-  radio.write(sendPayload, MAX_SEND_PAYLOAD_SIZE);
-
-  radio.startListening();
-}
-*/
-
 void RF24Adapter::setUpdateFrequency(int scaleId, int updateFrequency) {
   radio.stopListening();
 
