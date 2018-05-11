@@ -4,22 +4,16 @@
 
 /**
  * Food Supply Monitor application for Raspberry Pi
- *
- * Payloads can be of a varying (dynamic) size.
  */
 
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
-//#include <string>
 #include "../RF24.h"
-
-// Morten's includes
 #include <stdio.h>
 #include <stdlib.h>
 #include "database/firebaseadapter.h"
 #include "networkfacade/networkfacade.h"
-//#include "radiocommunication/radiocommunication.h"
 
 
 using namespace std;
@@ -71,55 +65,17 @@ using namespace std;
 // Radio pipe addresses for the 2 nodes to communicate.
 const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 
-
-//const int min_payload_size = 4;
-//const int max_payload_size = 32;
-//const int payload_size_increments_by = 1;
-//int next_payload_size = min_payload_size;
-
-
-//char receive_payload[max_payload_size+1]; // +1 to allow room for a terminating NULL char
-
-
-/*
-void setupRadio() {
-  radio.begin();
-  radio.enableDynamicPayloads();
-  radio.setRetries(5, 15);
-  radio.printDetails();
-  radio.openWritingPipe(pipes[1]);
-  radio.openReadingPipe(1, pipes[0]);
-  radio.startListening();
-}*/
-
 int main(int argc, char** argv){
-  //RadioCommunication *radio = new RadioCommunication(0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
-
-  NetworkFacade *networkFacade = new NetworkFacade(pipes);//0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL);
-
-  //IDatabase *db = new FirebaseAdapter;
-  //cJSON *reply = db->getContainerItem(1);
-  //cJSON *reply = db->getContainerState(2);
-  //cJSON *reply = db->getUpdateFrequency(3);
-  //cJSON *reply = db->setMaximumCapacity(0, 12.56);
-  //cJSON *reply = db->setEmptyContainerWeight(1, 4.33);
-  //cJSON *reply = db->setMeasurement(1, 33.87);
-  //cJSON *reply = db->createContainerItem();
-
-  //char *res = cJSON_Print(reply);
-  //printf("Reply: %s\n", res);
+  IRadio *radio = new RF24Adapter(pipes);  
+  IDatabase *db = new FirebaseAdapter("firebaseConfig.txt");
+  INetworkFacade *networkFacade = new NetworkFacade(radio, db);
 
   // Print preamble:
   cout << "Welcome to Food Supply Monitor\n";
 
-  // Setup and configure rf radio
-  // setupRadio();
-
   networkFacade->handleNetwork();
 
-  //char receivePayload[32+1]; 
-  //radio->receive(receivePayload);
-  //networkFacade->handleNetwork();
-
   delete networkFacade;
+  delete radio;
+  delete db;
 }
