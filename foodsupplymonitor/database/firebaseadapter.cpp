@@ -136,9 +136,10 @@ int FirebaseAdapter::deleteContainerItem(int containerId) {
   return 0;
 }
 
-int FirebaseAdapter::setCurrentAmount(int containerId, float measurement) {
+int FirebaseAdapter::setCurrentAmount(int containerId, float currentAmount) {
   cJSON *json = cJSON_CreateObject();
-  cJSON_AddNumberToObject(json, CURRENT_AMOUNT, measurement);
+  float currentAmountRounded = round(currentAmount*1000.0)/1000.0;
+  cJSON_AddNumberToObject(json, CURRENT_AMOUNT, currentAmountRounded);
   char *jsonString = cJSON_PrintUnformatted(json);
 
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
@@ -159,7 +160,8 @@ int FirebaseAdapter::setCurrentAmount(int containerId, float measurement) {
 
 int FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyContainerWeight) {
   cJSON *json = cJSON_CreateObject();
-  cJSON_AddNumberToObject(json, EMPTY_CONTAINER_WEIGHT, emptyContainerWeight);
+  float emptyContainerWeightRounded = round(emptyContainerWeight*1000.0)/1000.0;
+  cJSON_AddNumberToObject(json, EMPTY_CONTAINER_WEIGHT, emptyContainerWeightRounded);
   char *jsonString = cJSON_PrintUnformatted(json);
 
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
@@ -177,9 +179,10 @@ int FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyContain
 
 }
 
-int FirebaseAdapter::setMaximumCapacity(int containerId, float maxCapacity) {
+int FirebaseAdapter::setMaximumCapacity(int containerId, float maximumCapacity) {
   cJSON *json = cJSON_CreateObject();
-  cJSON_AddNumberToObject(json, MAXIMUM_CAPACITY, maxCapacity);
+  float maximumCapacityRounded = round(maximumCapacity*1000.0)/1000.0;
+  cJSON_AddNumberToObject(json, MAXIMUM_CAPACITY, maximumCapacityRounded);
   char *jsonString = cJSON_PrintUnformatted(json);
 
   string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
