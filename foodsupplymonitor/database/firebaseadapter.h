@@ -22,9 +22,9 @@ class FirebaseAdapter : public IDatabase {
     int containerItemExists(int containerId, int *exists) override;
     int createContainerItem(int containerId) override;
     int deleteContainerItem(int containerId) override;
-    int setCurrentAmount(int containerId, float measurement) override;
-    int setEmptyContainerWeight(int containerId, float measurement) override;
-    int setMaximumCapacity(int containerId, float maxCapacity) override;
+    int setCurrentAmount(int containerId, float currentAmount) override;
+    int setEmptyContainerWeight(int containerId, float emptyContainerWeight) override;
+    int setMaximumCapacity(int containerId, float maximumCapacity) override;
     int getContainerState(int containerId, char* state) override;
     int setContainerState(int containerId, const char *state) override;
     int getUpdateFrequency(int containerId, int *updateFrequency) override;
