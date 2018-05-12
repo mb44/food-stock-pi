@@ -76,8 +76,6 @@ void RF24Adapter::pack(int scaleId, int messageType, int updateFrequency) {
   sendPayload[4] = updateFrequency>>16;
   sendPayload[5] = updateFrequency>>8;
   sendPayload[6] = updateFrequency;
-
-  radio.write(sendPayload, MAX_SEND_PAYLOAD_SIZE);
 }
 
 void RF24Adapter::pack(int scaleId, int messageType) {
