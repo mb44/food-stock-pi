@@ -69,7 +69,7 @@ void RadioAdapter::send(char *sendPayload, uint8_t length) {
 */
 
 uint8_t RF24Adapter::receive(char *receivePayload) {
-  printf("RadioCommunication - Ready to receive\n");
+  printf("Radio communication - Ready to receive\n");
   // If there is data ready
   radio.startListening();
 
@@ -79,7 +79,7 @@ uint8_t RF24Adapter::receive(char *receivePayload) {
       uint8_t len;
       // Dump the payload until we've received everything
       while (radio.available()) {
-        printf("Reading...\n");
+        // printf("Reading...\n");
         // Fetch the payload, and see if this was the last one
         len = radio.getDynamicPayloadSize();
         radio.read(receivePayload, len);
