@@ -23,15 +23,14 @@ void NetworkFacade::handleNetwork() {
 
     }
 
-   // radio->send(receivePayload, length);
-    //  TODO
+    printf("Received a request\n");
     // 1. Check msg type
     // 2. Query Database
-    // 3. Send data to Uno
+    // 3. Send reply to Uno
     uint8_t msgType = receivePayload[0];
-    printf("Message type: %d\n", msgType);
-
+    // printf("Message type: %d\n", msgType);
     int scaleId = receivePayload[1]<<8 | receivePayload[2];
+    // printf("Scale Id: %d\n", scaleId);
     int measurementDecigrams;
     float measurementKilos;
     char containerState[30];
@@ -51,7 +50,7 @@ void NetworkFacade::handleNetwork() {
           measurementKilos = measurementDecigrams / 100.0;
 	  // 3. Get containerState from database
           db->getContainerState(scaleId, containerState);
-          //printf("Container state: %s\n", containerState);
+          // printf("Container state: %s\n", containerState);
 
 	  // 4. Set a) Measurement b) emptyContainerWeight 3) maximumCapacity
           if (strcmp(containerState, CURRENT_AMOUNT) == 0) {
@@ -67,7 +66,7 @@ void NetworkFacade::handleNetwork() {
 	  // 5. Get update freqency from DB
           printf("scale id: %d\n", scaleId);
           db->getUpdateFrequency(scaleId, &updateFrequencySeconds);
-          printf("Update frequency (seconds): %d\n", updateFrequencySeconds);
+          printf("Update frequency: %d\n", updateFrequencySeconds);
 
 	  // 5. Send reply to Scale
 	  radio->setUpdateFrequency(scaleId, updateFrequencySeconds);
