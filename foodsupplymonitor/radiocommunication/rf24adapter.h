@@ -22,6 +22,8 @@ class RF24Adapter : public IRadio {
     char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
     char sendPayload[MAX_SEND_PAYLOAD_SIZE+1];
     void setupRadio();
+    void pack(int scaleId, int messageType, int updateFrequency);
+    void pack(int scaleId, int messageType);
 
   public:
     RF24Adapter(const uint64_t pipes[2]);
