@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/radiostub.cpp" "/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/CMakeFiles/runTests.dir/radiostub.cpp.o"
   "/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/tests.cpp" "/home/pi/Desktop/rf24libs/RF24/foodsupplymonitor/tests/CMakeFiles/runTests.dir/tests.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

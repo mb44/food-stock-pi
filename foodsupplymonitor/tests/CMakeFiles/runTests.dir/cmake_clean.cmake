@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/runTests.dir/radiostub.cpp.o"
   "CMakeFiles/runTests.dir/tests.cpp.o"
   "runTests.pdb"
   "runTests"

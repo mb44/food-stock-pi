@@ -123,6 +123,33 @@ runTests/fast:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
 .PHONY : runTests/fast
 
+radiostub.o: radiostub.cpp.o
+
+.PHONY : radiostub.o
+
+# target to build an object file
+radiostub.cpp.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/radiostub.cpp.o
+.PHONY : radiostub.cpp.o
+
+radiostub.i: radiostub.cpp.i
+
+.PHONY : radiostub.i
+
+# target to preprocess a source file
+radiostub.cpp.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/radiostub.cpp.i
+.PHONY : radiostub.cpp.i
+
+radiostub.s: radiostub.cpp.s
+
+.PHONY : radiostub.s
+
+# target to generate assembly for a file
+radiostub.cpp.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/radiostub.cpp.s
+.PHONY : radiostub.cpp.s
+
 tests.o: tests.cpp.o
 
 .PHONY : tests.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... runTests"
+	@echo "... radiostub.o"
+	@echo "... radiostub.i"
+	@echo "... radiostub.s"
 	@echo "... tests.o"
 	@echo "... tests.i"
 	@echo "... tests.s"
