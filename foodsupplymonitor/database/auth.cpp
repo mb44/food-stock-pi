@@ -39,7 +39,7 @@ char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
     exit(EXIT_FAILURE);
   }
 
-  printf("Firebase auth key: %s\n\n", reply->valuestring);
+  printf("Firebase auth key:\n %s\n\n", reply->valuestring);
 
   pclose(fpipe);
 
