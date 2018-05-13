@@ -12,9 +12,10 @@
 #include "../RF24.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "database/firebaseadapter.h"
 #include "networkfacade/networkfacade.h"
-
+#include "radio/packer.h"
+#include "database/firebaseadapter.h"
+#include "database/resthandler.h"
 
 using namespace std;
 //
@@ -66,8 +67,10 @@ using namespace std;
 const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 
 int main(int argc, char** argv){
-  IRadio *radio = new RF24Adapter(pipes);  
-  IDatabase *db = new FirebaseAdapter("firebaseConfig.txt");
+  IPacker *packer = new Packer;
+  IRadio *radio = new RF24Adapter(pipes, packer);  
+  IRESTHandler *rest =  new RESTHandler;
+  IDatabase *db = new FirebaseAdapter(rest, "firebaseConfig.txt");
   INetworkFacade *networkFacade = new NetworkFacade(radio, db);
 
   // Print preamble:
@@ -75,7 +78,9 @@ int main(int argc, char** argv){
 
   networkFacade->handleNetwork();
 
-  delete networkFacade;
+  delete rest;
+  delete packer;
   delete radio;
   delete db;
+  delete networkFacade;
 }
