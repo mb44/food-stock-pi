@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "networkfacade/networkfacade.h"
 #include "radio/packer.h"
+#include "database/auth.h"
 #include "database/firebaseadapter.h"
 #include "database/resthandler.h"
 
@@ -69,8 +70,9 @@ const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 int main(int argc, char** argv){
   IPacker *packer = new Packer;
   IRadio *radio = new RF24Adapter(pipes, packer);  
+  IAuth *auth = new Auth;
   IRESTHandler *rest =  new RESTHandler;
-  IDatabase *db = new FirebaseAdapter(rest, "firebaseConfig.txt");
+  IDatabase *db = new FirebaseAdapter(auth, rest, "firebaseConfig.txt");
   INetworkFacade *networkFacade = new NetworkFacade(radio, db);
 
   // Print preamble:
@@ -78,6 +80,7 @@ int main(int argc, char** argv){
 
   networkFacade->handleNetwork();
 
+  delete auth;
   delete rest;
   delete packer;
   delete radio;
