@@ -5,6 +5,7 @@
 #include "auth.h"
 #include <string>
 #include <iostream>
+#include "iresthandler.h"
 
 class FirebaseAdapter : public IDatabase {
   private:
@@ -14,10 +15,10 @@ class FirebaseAdapter : public IDatabase {
     char authToken[AUTHTOKEN_LENGTH+1];
     cJSON *jsonReply;
     void authenticate();
-    void parseConfig(char *firebaseConfig);
+    void parseConfig(const char *firebaseConfig);
     void executeCURL(char *reply, const char *cmd);
   public:
-    FirebaseAdapter(char *firebaseConfig);
+    FirebaseAdapter(IRESTHandler *rest, const char *firebaseConfig);
     ~FirebaseAdapter();
     int containerItemExists(int containerId, int *exists) override;
     int createContainerItem(int containerId) override;

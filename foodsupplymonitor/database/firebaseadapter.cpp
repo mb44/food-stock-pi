@@ -8,7 +8,7 @@
 
 using namespace std;
 
-FirebaseAdapter::FirebaseAdapter(char *firebaseConfig) {
+FirebaseAdapter::FirebaseAdapter(IRESTHandler *rest, const char *firebaseConfig) {
   parseConfig(firebaseConfig);
   auth = new Auth();
 
@@ -33,7 +33,7 @@ void FirebaseAdapter::authenticate() {
   authToken[AUTHTOKEN_LENGTH] = '\0';
 }
 
-void FirebaseAdapter::parseConfig(char *firebaseConfig) {
+void FirebaseAdapter::parseConfig(const char *firebaseConfig) {
   char line[FIREBASECONFIG_LINE_LENGTH_MAX];
 
   FILE *fp;
