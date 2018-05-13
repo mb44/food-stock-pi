@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "resthandler.h"
 
 using namespace std;
 
@@ -18,17 +19,10 @@ char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
   const char* signInCommand = tmp.c_str();
   char msg[2048];
 
-  if (0 == (fpipe = (FILE*)popen(signInCommand, "r"))) {
-    perror("popen() failed");
-    exit(EXIT_FAILURE);
-  }
+  RESTHandler rest;
+  IRESTHandler *irest = &rest;
 
-  int i = 0;
-  char c = 0;
-  while (fread(&c, sizeof c, 1, fpipe)) {
-    msg[i++] = c;
-    //printf("%c", c);
-  }
+  irest->executeRequest(signInCommand, msg);
 
   cJSON *root = cJSON_Parse(msg);
 
@@ -40,8 +34,6 @@ char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
   }
 
   printf("Firebase auth key:\n %s\n\n", reply->valuestring);
-
-  pclose(fpipe);
 
   char *res = cJSON_Print(reply);
 
