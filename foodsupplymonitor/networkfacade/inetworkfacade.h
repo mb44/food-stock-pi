@@ -1,7 +1,7 @@
 #ifndef INETWORK_FACADE_H
 #define INETWORK_NACADE_H
 
-#include "../radiocommunication/rf24adapter.h"
+#include "../radio/rf24adapter.h"
 #include "../database/firebaseadapter.h"
 
 class INetworkFacade { 
