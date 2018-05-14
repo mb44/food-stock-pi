@@ -73,7 +73,7 @@ void NetworkFacade::handleNetwork() {
 	  //radio->send(sendPayload, MAX_SEND_PAYLOAD_SIZE);
 	  break;
     
-	 case RADIO_RCV_MSG_TYPE_DELETE_CONTAINER:
+	 case RADIO_RCV_MSG_TYPE_POWER_DOWN_REQ:
            break;
            // Delete container
            //db->deleteContainerItem(scaleId);
