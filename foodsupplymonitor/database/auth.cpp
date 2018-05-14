@@ -8,21 +8,17 @@
 
 using namespace std;
 
-Auth::Auth() {
-}
+Auth::Auth(IRESTHandler *rest)
+: rest(rest) 
+{}
 
 char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
-  FILE *fpipe;
-
   string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+string(cfg.apiKey)+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+string(cfg.email)+"\",\"password\":\""+string(cfg.password)+"\",\"returnSecureToken\":true}'";
  
   const char* signInCommand = tmp.c_str();
   char msg[2048];
 
-  RESTHandler rest;
-  IRESTHandler *irest = &rest;
-
-  irest->executeRequest(signInCommand, msg);
+  rest->executeRequest(signInCommand, msg);
 
   cJSON *root = cJSON_Parse(msg);
 
