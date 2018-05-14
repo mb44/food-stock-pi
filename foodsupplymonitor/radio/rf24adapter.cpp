@@ -108,7 +108,7 @@ void RF24Adapter::setUpdateFrequency(int scaleId, int updateFrequency) {
 void RF24Adapter::powerDown(int scaleId) {
   radio.stopListening();
 
-  packer->pack(sendPayload, scaleId, RADIO_SEND_MSG_TYPE_POWER_DOWN);
+  packer->pack(sendPayload, scaleId, RADIO_SEND_MSG_TYPE_POWER_DOWN_RSP);
 
   radio.write(sendPayload, MAX_SEND_PAYLOAD_SIZE);
 
