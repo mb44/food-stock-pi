@@ -28,9 +28,9 @@ class RF24Adapter : public IRadio {
   public:
     RF24Adapter(const uint64_t pipes[2], IPacker *packer);
     ~RF24Adapter();
-    uint8_t receive(char *receivePayload) override;
-    void powerDown(int scaleId) override;
-    void setUpdateFrequency(int scaleId, int updateFrequency) override;
+    uint8_t receive(uint8_t *scaleId, int *messageType, int *data) override;
+    uint8_t powerDown(const uint8_t scaleId) override;
+    uint8_t setUpdateFrequency(const uint8_t scaleId, const int updateFrequency) override;
 };
 
 #endif  // RF24_ADAPTER_H 
