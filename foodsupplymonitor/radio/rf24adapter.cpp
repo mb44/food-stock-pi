@@ -60,16 +60,7 @@ RF24Adapter::RF24Adapter(const uint64_t pipes[2], IPacker *packer) :
 RF24Adapter::~RF24Adapter() {
 }
 
-/*
-void RadioAdapter::send(char *sendPayload, uint8_t length) {
-  radio.stopListening();
-
-  radio.write(sendPayload, length);
-  radio.startListening();
-}
-*/
-
-uint8_t RF24Adapter::receive(char *receivePayload) {
+uint8_t RF24Adapter::receive(uint8_t *scaleId, int *messageType, int *data) {
   printf("Radio communication - Ready to receive\n");
   // If there is data ready
   radio.startListening();
@@ -92,20 +83,28 @@ uint8_t RF24Adapter::receive(char *receivePayload) {
         //printf("Got payload size=%i value=%s\n\r", len, receivePayload);
       }
       radio.stopListening();
-      return len;
+      
+      packer->unpack(receivePayload, scaleId, messageType, data);
+
+      if (messageType>=1 && messageType<=2) {
+        return 0;
+      } else {
+	return 1;
+      }
     }
   }
 }
 
-void RF24Adapter::setUpdateFrequency(int scaleId, int updateFrequency) {
+uint8_t RF24Adapter::setUpdateFrequency(const uint8_t scaleId, const int updateFrequency) {
   radio.stopListening();
   packer->pack(sendPayload, scaleId, RADIO_SEND_MSG_TYPE_SET_UPDATE_FREQUENCY, updateFrequency);
   radio.write(sendPayload, MAX_SEND_PAYLOAD_SIZE);
 
   radio.startListening();
+  return 0;
 }
 
-void RF24Adapter::powerDown(int scaleId) {
+uint8_t RF24Adapter::powerDown(const uint8_t scaleId) {
   radio.stopListening();
 
   packer->pack(sendPayload, scaleId, RADIO_SEND_MSG_TYPE_POWER_DOWN_RSP);
@@ -113,4 +112,5 @@ void RF24Adapter::powerDown(int scaleId) {
   radio.write(sendPayload, MAX_SEND_PAYLOAD_SIZE);
 
   radio.startListening();
+  return 0;
 }
