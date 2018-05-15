@@ -86,7 +86,8 @@ uint8_t RF24Adapter::receive(uint8_t *scaleId, int *messageType, int *data) {
       
       packer->unpack(receivePayload, scaleId, messageType, data);
 
-      if (messageType>=1 && messageType<=2) {
+      if (messageType==RADIO_RCV_MSG_TYPE_MEASUREMENT  
+	|| messageType==RADIO_RCV_MSG_TYPE_POWER_DOWN_REQ) {
         return 0;
       } else {
 	return 1;
