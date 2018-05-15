@@ -10,7 +10,7 @@ class Auth : public IAuth {
     IRESTHandler *rest;
   public:
     Auth(IRESTHandler *rest);
-    ~Auth() { std::cout << "Auth destructed" << std::endl; };
+    ~Auth() {}
     char * signInWithEmailAndPassword(FirebaseConfig config) override;
 };
 
