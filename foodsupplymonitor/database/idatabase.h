@@ -1,6 +1,7 @@
 #ifndef IDATABASE_H
 #define IDATABASE_H
 
+#include "../defines.h"
 #include "dbdefines.h"
 #include <iostream>
 #include <string>
