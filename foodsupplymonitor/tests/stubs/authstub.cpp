@@ -12,7 +12,7 @@ AuthStub::AuthStub() {
 
 char * AuthStub::signInWithEmailAndPassword(FirebaseConfig cfg) {
   char *res = malloc(946 * sizeof(char));
-  res = "abc";
+  res = "abcfirebase";
 
   return res;
 }
