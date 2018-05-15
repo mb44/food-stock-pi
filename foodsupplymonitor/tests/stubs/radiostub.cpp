@@ -9,33 +9,7 @@ RadioStub::RadioStub(const uint64_t pipes[2]) {
 RadioStub::~RadioStub() {
 }
 
-/*
-void RadioAdapter::send(char *sendPayload, uint8_t length) {
-  radio.stopListening();
-
-  radio.write(sendPayload, length);
-  radio.startListening();
-}
-*/
-
-void RadioStub::pack(int scaleId, int messageType, int updateFrequency) {
-  sendPayload[0] = messageType;
-  sendPayload[1] = scaleId>>8;
-  sendPayload[2] = scaleId;
-  sendPayload[3] = updateFrequency>>24;
-  sendPayload[4] = updateFrequency>>16;
-  sendPayload[5] = updateFrequency>>8;
-  sendPayload[6] = updateFrequency;
-
-}
-
-void RadioStub::pack(int scaleId, int messageType) {
-  sendPayload[0] = messageType;
-  sendPayload[1] = scaleId>>8;
-  sendPayload[2] = scaleId;
-}
-
-uint8_t RadioStub::receive(char *receivePayload) {
+uint8_t RadioStub::receive(int *scaleId, uint8_t *messageType, int *data) {
 /*
   printf("Radio communication - Ready to receive\n");
   // If there is data ready
@@ -66,8 +40,12 @@ uint8_t RadioStub::receive(char *receivePayload) {
   return 1;
 }
 
-void RadioStub::setUpdateFrequency(int scaleId, int updateFrequency) {
+
+uint8_t RadioStub::setUpdateFrequency(const int scaleId, int updateFrequency) {
+  return 1;
 }
 
-void RadioStub::powerDown(int scaleId) {
+
+uint8_t RadioStub::powerDown(const int scaleId) {
+  return 1;
 }
