@@ -13,8 +13,8 @@ void NetworkFacade::handleNetwork() {
   //char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
 
   // Listen, forever
-  uint8_t scaleId = 0;
-  int msgType = 0;
+  int scaleId = 0;
+  uint8_t msgType = 0;
   int data = 0;
   uint8_t error = 1;
 
