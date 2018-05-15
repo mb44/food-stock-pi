@@ -26,13 +26,9 @@ class RadioStub : public IRadio {
 
     RadioStub(const uint64_t pipes[2]);
     ~RadioStub();
-    uint8_t receive(char *receivePayload) override;
-    void powerDown(int scaleId) override;
-    void setUpdateFrequency(int scaleId, int updateFrequency) override;
-   
-    void pack(int scaleId, int messageType, int updateFrequency);
-    void pack(int scaleId, int messageType);
-
+    uint8_t receive(int *scaleId, uint8_t *messageType, int *data) override;
+    uint8_t setUpdateFrequency(const int scaleId, const int updateFrequency) override;
+    uint8_t powerDown(const int scaleId) override;
 };
 
 #endif  // RF24_ADAPTER_H 
