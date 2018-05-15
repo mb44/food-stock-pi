@@ -10,27 +10,35 @@ NetworkFacade::~NetworkFacade() {
 }
 
 void NetworkFacade::handleNetwork() {
-  char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
+  //char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
 
-  uint8_t length = 0;
   // Listen, forever
+  uint8_t scaleId = 0;
+  int msgType = 0;
+  int data = 0;
+  uint8_t error = 1;
+
   while (1) {
-    length = radio->receive(receivePayload);
-    printf("Got payload size=%i value=%s\n\r", length, receivePayload);
+    error = radio->receive(&scaleId, &msgType, &data);
+    if (error) {
+	continue;
+    }
+    
+/*
+    printf("Got payload value=%s\n\r", receivePayload);
     
     for (int i=0; i<10; i++) {  
        printf("Byte %d: %d\n", i, receivePayload[i]); 
 
     }
+*/
 
     printf("Received a request\n");
     // 1. Check msg type
     // 2. Query Database
     // 3. Send reply to Uno
-    uint8_t msgType = receivePayload[0];
-    // printf("Message type: %d\n", msgType);
-    int scaleId = receivePayload[1]<<8 | receivePayload[2];
-    // printf("Scale Id: %d\n", scaleId);
+    //uint8_t msgType = receivePayload[0];
+    //int scaleId = receivePayload[1]<<8 | receivePayload[2];
     int measurementDecigrams;
     float measurementKilos;
     char containerState[30];
@@ -45,7 +53,7 @@ void NetworkFacade::handleNetwork() {
 	    db->createContainerItem(scaleId);
 	  }
           // 2. Extract measurement
-          measurementDecigrams = receivePayload[3]<<24 | receivePayload[4]<<16 | receivePayload[5]<<8 | receivePayload[6];
+          measurementDecigrams = data;
           // Convert from decigrams to Kilograms
           measurementKilos = measurementDecigrams / 100.0;
 	  // 3. Get containerState from database
