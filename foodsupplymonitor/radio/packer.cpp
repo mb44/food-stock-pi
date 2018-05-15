@@ -26,6 +26,5 @@ uint8_t Packer::unpack(const char *payload, uint8_t *scaleId, int *messageType, 
   *scaleId = payload[2];
   *scaleId = payload[1]<<8;
   *data = payload[3]<<24 | payload[4]<<16 | payload[5]<<8 | payload[6]; 
-
   return 0;
 }
