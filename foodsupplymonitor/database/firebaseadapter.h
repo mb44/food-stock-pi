@@ -21,15 +21,14 @@ class FirebaseAdapter : public IDatabase {
   public:
     FirebaseAdapter(IAuth *auth, IRESTHandler *rest, const char *firebaseConfig);
     ~FirebaseAdapter();
-    int containerItemExists(int containerId, int *exists) override;
-    int createContainerItem(int containerId) override;
-    int deleteContainerItem(int containerId) override;
-    int setCurrentAmount(int containerId, float currentAmount) override;
-    int setEmptyContainerWeight(int containerId, float emptyContainerWeight) override;
-    int setMaximumCapacity(int containerId, float maximumCapacity) override;
-    int getContainerState(int containerId, char* state) override;
-    int setContainerState(int containerId, const char *state) override;
-    int getUpdateFrequency(int containerId, int *updateFrequency) override;
+    uint8_t containerItemExists(int containerId, int *exists) override;
+    uint8_t createContainerItem(int containerId) override;
+    uint8_t setCurrentAmount(int containerId, float currentAmount) override;
+    uint8_t setEmptyContainerWeight(int containerId, float emptyContainerWeight) override;
+    uint8_t setMaximumCapacity(int containerId, float maximumCapacity) override;
+    uint8_t getContainerState(int containerId, char* state) override;
+    uint8_t setContainerState(int containerId, const char *state) override;
+    uint8_t getUpdateFrequency(int containerId, int *updateFrequency) override;
 };
 
 #endif // FIREBASEADAPTER_H
