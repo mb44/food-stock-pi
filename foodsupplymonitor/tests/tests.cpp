@@ -7,7 +7,7 @@
 #include <cstring>
 
 /******************************
-* Test radio Pack/Unpack      *
+* Test Pack RF24Packer        *
 ******************************/ 
 
 TEST(PackTestUpdateFrequency, UpdateFrequencyNegative) {
@@ -99,21 +99,42 @@ TEST(PackTestPowerDown, PowerDownValidData) {
   EXPECT_TRUE(0 == memcmp( expected, payload, payloadSize ));
 }
 
+TEST(UnPackTest, ScaleIdToLarge) {
+  Packer p;
+  IPacker *packer = &p;
+  int payloadSize = 7;
+  char payload[payloadSize] = { 0x2, 0x1, 0x2, 0, 0, 30 };
+  // Integer size on Raspberry Pi: 4bytes. Most significant bit set: number is negative
+  int scaleId = 0x0;
+  uint8_t messageType = 0;
+  int data = 0;
+
+  int success = packer->unpack(payload, &scaleId, &messageType, &data);
+  uint8_t expectedSuccess = 1;
+  //EXPECT_EQ(expectedSuccess, success);
+}
+
 TEST(UnPackTest, ValidUpdateFrequency) {
   Packer p;
   IPacker *packer = &p;
   int payloadSize = 7;
-  char payload[payloadSize] = { 0x02, 0, 0xD, 0, 0, 0x4, 0xB0};
+  char payload[payloadSize] = { 0x2, 0, 0xD, 0, 0, 0x4, 0xB0 };
 
   int scaleId = 0;
   uint8_t messageType = 0;
   int data = 0;
-  int success = packer->unpack(payload, &scaleId, &messageType, &data);
+  uint8_t success = packer->unpack(payload, &scaleId, &messageType, &data);
+
   EXPECT_EQ(2, messageType);
-  // Problem:
   EXPECT_EQ(13, scaleId);
   EXPECT_EQ(1200, data);
 }
+
+
+/******************************
+* Test RF24Adapter            *
+******************************/
+
  
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
