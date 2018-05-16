@@ -12,7 +12,7 @@ Auth::Auth(IRESTHandler *rest)
 : rest(rest) 
 {}
 
-char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
+uint8_t Auth::signInWithEmailAndPassword(const FirebaseConfig cfg, char *reply) {
   string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+string(cfg.apiKey)+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+string(cfg.email)+"\",\"password\":\""+string(cfg.password)+"\",\"returnSecureToken\":true}'";
  
   const char* signInCommand = tmp.c_str();
@@ -22,18 +22,19 @@ char * Auth::signInWithEmailAndPassword(FirebaseConfig cfg) {
 
   cJSON *root = cJSON_Parse(msg);
 
-  cJSON *reply =  cJSON_GetObjectItemCaseSensitive(root, "idToken");
+  cJSON *dbReply =  cJSON_GetObjectItemCaseSensitive(root, "idToken");
 
-  if (reply == NULL) {
-    perror("FAIL: could not retrieve authentication key. Exiting...\n");
-    exit(EXIT_FAILURE);
+  if (dbReply == NULL) {
+    // perror("FAIL: could not retrieve authentication key. Exiting...\n");
+    // exit(EXIT_FAILURE);
+    return 1;
   }
 
-  printf("Firebase auth key:\n %s\n\n", reply->valuestring);
+  printf("Firebase auth key:\n %s\n\n", dbReply->valuestring);
 
-  char *res = cJSON_Print(reply);
+  reply = cJSON_Print(dbReply);
 
   cJSON_Delete(root);
 
-  return res;
+  return 0;
 }
