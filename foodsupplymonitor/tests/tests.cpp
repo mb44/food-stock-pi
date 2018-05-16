@@ -6,10 +6,42 @@
 #include "mytest.cpp"
 #include <cstring>
 
-/**************************
-* Test radio Packing      *
-**************************/ 
-TEST(PackerTest, packUpdateFrequencyOK) {
+/******************************
+* Test radio Pack/Unpack      *
+******************************/ 
+
+TEST(PackTestUpdateFrequency, UpdateFrequencyNegative) {
+  Packer p;
+  IPacker *packer = &p;
+  int payloadSize = 7;
+  char payload[payloadSize] = { 0, 0, 0, 0, 0, 0, 0};
+  uint8_t messageType = 1;
+  // 425 = 1A9h
+  int scaleId = 425;
+  // 683 = 2ABh
+  int updateFrequency = -25;
+  uint8_t success = packer->pack(payload, scaleId, messageType, updateFrequency);
+  // Expect pack() to return 1 (error)
+  uint8_t expectedOutcome = 1;
+  EXPECT_EQ(expectedOutcome, success);
+}
+
+TEST(PackTestUpdateFrequency, UpdateFrequencyScaleIdTooSmall) {
+  Packer p;
+  IPacker *packer = &p;
+  int payloadSize = 7;
+  char payload[payloadSize] = { 0, 0, 0, 0, 0, 0, 0};
+  uint8_t messageType = 2;
+  int updateFrequency = 30;
+  int scaleId = -1;
+  uint8_t success = packer->pack(payload, scaleId, messageType, updateFrequency);
+
+  uint8_t expectedOutcome = 1;
+  // Expect pack() to return 1 (error)
+  EXPECT_EQ(expectedOutcome, success);
+}
+
+TEST(PackTestUpdateFrequency, ValidUpdateFrequency) {
   Packer p;
   IPacker *packer = &p;
   int payloadSize = 7;
@@ -25,41 +57,64 @@ TEST(PackerTest, packUpdateFrequencyOK) {
   EXPECT_TRUE(0 == memcmp( expected, payload, payloadSize ));
 }
 
-/*
-TEST(PackerTest, packUpdateFrequencyNegativeBAD) {
+TEST(PackTestPowerDown, PowerDownScaleIdTooSmall) {
   Packer p;
   IPacker *packer = &p;
   int payloadSize = 7;
   char payload[payloadSize] = { 0, 0, 0, 0, 0, 0, 0};
-  uint8_t messageType = 1;
-  // 425 = 1A9h
-  int scaleId = 425;
-  // 683 = 2ABh
-  int updateFrequency = -25;
-  uint8_t success = packer->pack(payload, scaleId, messageType, updateFrequency);
+  int messageType = 2;
+  int scaleId = -1;
+  uint8_t success = packer->pack(payload, scaleId, messageType);
 
-  char expected[payloadSize] =  { messageType, 0x1, 0xA9, 0, 0, 0x2, 0$
-  // Expect comparison of arrays to yield true
-
-  uint8_t expected = 1;
-  EXPECT_EQ(expected, success);
+  uint8_t expectedOutcome = 1;
+  // Expect pack() to return 1 (error)
+  EXPECT_EQ(expectedOutcome, success);
 }
-*/
-/*
-TEST(PackerTest, packPowerDownOK) {
+
+
+TEST(PackTestPowerDown, PowerDownScaleIdTooLarge) {
   Packer p;
   IPacker *packer = &p;
   int payloadSize = 7;
-  char payload[payloadSize] = { 0, 0, 0, 0, 0, 0, 0};  
-  int messageType = 2; 
-  int scaleId = 2;
-  packer->pack(payload, scaleId, messageType);
+  char payload[payloadSize] = { 0, 0, 0, 0, 0, 0, 0};
+  int messageType = 2;
+  int scaleId = 1050;
+  uint8_t success = packer->pack(payload, scaleId, messageType);
+  
+  uint8_t expectedOutcome = 1;
+  // Expect pack() to return 1 (error)
+  EXPECT_EQ(expectedOutcome, success);
+}
 
+TEST(PackTestPowerDown, PowerDownValidData) {
+  Packer p;
+  IPacker *packer = &p;
+  int payloadSize = 7;
+  char payload[payloadSize] = { 0, 0, 0, 0, 0, 0, 0};
+  int messageType = 2;
+  int scaleId = 2;
+  uint8_t success = packer->pack(payload, scaleId, messageType);
   char expected[payloadSize] =  { messageType, 0, 2, 0, 0, 0, 0 };
   // Expect comparison of arrays to yield true
   EXPECT_TRUE(0 == memcmp( expected, payload, payloadSize ));
 }
-*/ 
+
+TEST(UnPackTest, ValidUpdateFrequency) {
+  Packer p;
+  IPacker *packer = &p;
+  int payloadSize = 7;
+  char payload[payloadSize] = { 0x02, 0, 0xD, 0, 0, 0x4, 0xB0};
+
+  int scaleId = 0;
+  uint8_t messageType = 0;
+  int data = 0;
+  int success = packer->unpack(payload, &scaleId, &messageType, &data);
+  EXPECT_EQ(2, messageType);
+  // Problem:
+  EXPECT_EQ(13, scaleId);
+  EXPECT_EQ(1200, data);
+}
+ 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
