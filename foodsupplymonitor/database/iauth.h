@@ -9,7 +9,7 @@
 class IAuth {
   public:
     virtual ~IAuth() {}
-    virtual char * signInWithEmailAndPassword(FirebaseConfig config) = 0;
+    virtual uint8_t signInWithEmailAndPassword(const FirebaseConfig config, char *reply) = 0;
 };
 
 #endif // IAUTH_H
