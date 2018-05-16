@@ -86,6 +86,7 @@ uint8_t RF24Adapter::receive(int *scaleId, uint8_t *messageType, int *data) {
       
       packer->unpack(receivePayload, scaleId, messageType, data);
 
+      // Checkfor invalid message type
       if (*messageType==RADIO_RCV_MSG_TYPE_MEASUREMENT  
 	|| *messageType==RADIO_RCV_MSG_TYPE_POWER_DOWN_REQ) {
         return 0;
@@ -97,11 +98,13 @@ uint8_t RF24Adapter::receive(int *scaleId, uint8_t *messageType, int *data) {
 }
 
 uint8_t RF24Adapter::setUpdateFrequency(const int scaleId, const int updateFrequency) {
-  radio.stopListening();
-
-  if (updateFrequency<0) {
+  if (scaleId<0 || scaleId>MAX_CONTAINERS) {
+    return 1;
+  } else if (updateFrequency<0) {
     return 1;
   }
+
+  radio.stopListening();
 
   packer->pack(sendPayload, scaleId, RADIO_SEND_MSG_TYPE_SET_UPDATE_FREQUENCY, updateFrequency);
   radio.write(sendPayload, MAX_SEND_PAYLOAD_SIZE);
@@ -111,6 +114,10 @@ uint8_t RF24Adapter::setUpdateFrequency(const int scaleId, const int updateFrequ
 }
 
 uint8_t RF24Adapter::powerDown(const int scaleId) {
+  if (scaleId<0 || scaleId>MAX_CONTAINERS) {
+    return 1;
+  }
+
   radio.stopListening();
 
   packer->pack(sendPayload, scaleId, RADIO_SEND_MSG_TYPE_POWER_DOWN_RSP);
