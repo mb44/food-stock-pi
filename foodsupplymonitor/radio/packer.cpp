@@ -32,8 +32,7 @@ uint8_t Packer::pack(char *payload, const int scaleId, const uint8_t messageType
 }
 
 uint8_t Packer::unpack(const char *payload, int *scaleId, uint8_t *messageType, int *data) {
-  *scaleId = payload[2];
-  *scaleId = payload[1]<<8;
+  *scaleId = payload[2] | payload[1]<<8;
 
   if (*scaleId < 0 || *scaleId > MAX_CONTAINERS) {
     return 1;
