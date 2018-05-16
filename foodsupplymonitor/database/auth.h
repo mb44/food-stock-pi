@@ -11,7 +11,7 @@ class Auth : public IAuth {
   public:
     Auth(IRESTHandler *rest);
     ~Auth() {}
-    char * signInWithEmailAndPassword(FirebaseConfig config) override;
+    uint8_t signInWithEmailAndPassword(const FirebaseConfig config, char *reply) override;
 };
 
 #endif
