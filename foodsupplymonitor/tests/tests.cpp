@@ -4,6 +4,7 @@
 #include "stubs/rf24stub.h"
 #include "../database/firebaseadapter.h"
 #include "stubs/resthandlerupdatefrequencyfake1.h"
+#include "stubs/resthandlerupdatefrequencyfake2.h"
 #include "../radio/packer.h"
 #include "../database/resthandler.h"
 #include "../database/auth.h"
@@ -223,28 +224,42 @@ TEST(RF24Adapter_PowerDown, ScaleIdTooLarge) {
 * Test FirebaseAdapter        *
 ******************************/
 TEST(FirebaseAdapter_GetUpdateFrequency, NegativeUpdateFrequency) {
-  RESTHandler r;
+  RESTHandlerUpdateFrequencyFake1 r;
   IRESTHandler *rest = &r;
-
+  
   Auth a(rest);
   IAuth *auth = &a;
-  
-  RESTHandlerUpdateFrequencyFake1 r2;
-  IRESTHandler *fakeRest = &r2;
 
-  FirebaseAdapter d(auth, fakeRest, "../firebaseConfig.txt");
+  FirebaseAdapter d(auth, rest, "../firebaseConfig.txt");
   IDatabase *db = &d;
 
   int scaleId = 13;
   int updateFrequency = 0;
   uint8_t result = db->getUpdateFrequency(scaleId, &updateFrequency);
-  printf("HEJ2\n");
-
-
   uint8_t expected = 1;
   EXPECT_EQ(expected, result);
 }
 
+TEST(FirebaseAdapter_GetUpdateFrequency, UpdateFrequencyValid) {
+  RESTHandlerUpdateFrequencyFake2 r;
+  IRESTHandler *rest = &r;
+
+  Auth a(rest);
+  IAuth *auth = &a;
+
+  FirebaseAdapter d(auth, rest, "../firebaseConfig.txt");
+  IDatabase *db = &d;
+
+  int scaleId = 13;
+  int updateFrequency = 0;
+  uint8_t result = db->getUpdateFrequency(scaleId, &updateFrequency);
+  uint8_t expectedResult = 0;
+
+  int expectedUpdateFrequency = 45;
+
+  //EXPECT_EQ(expectedResult, result);
+  EXPECT_EQ(expectedUpdateFrequency, updateFrequency);
+}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
