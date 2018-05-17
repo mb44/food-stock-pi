@@ -11,7 +11,7 @@
 #define MAXIMUM_CAPACITY "maximumCapacity"
 #define EMPTY_CONTAINER_WEIGHT "emptyContainerWeight"
 
-#define CONTAINER_ID_NOT_EXISTS 0
-#define CONTAINER_ID_EXISTS 1
+#define CONTAINER_ID_EXISTS 0
+#define CONTAINER_ID_NOT_EXISTS 1
 
 #endif // DB_DEFINES_H
