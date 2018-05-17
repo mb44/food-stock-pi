@@ -10,17 +10,19 @@
 class FirebaseAdapter : public IDatabase {
   private:
     FirebaseConfig cfg;
+    const char *configPath;
     IAuth *auth;
     IRESTHandler *rest;
     // Authtoken = 945 characters + 1 for null-terminating null-character
     char authToken[AUTHTOKEN_LENGTH+1];
     cJSON *jsonReply;
-    void authenticate();
-    void parseConfig(const char *firebaseConfig);
-    // void executeCURL(char *reply, const char *cmd);
+    void parseConfig();
   public:
-    FirebaseAdapter(IAuth *auth, IRESTHandler *rest, const char *firebaseConfig);
+    FirebaseAdapter(IAuth *auth, IRESTHandler *rest, const char *configPath);
     ~FirebaseAdapter();
+
+    uint8_t authenticate();
+
     uint8_t containerItemExists(int containerId, int *exists) override;
     uint8_t createContainerItem(int containerId) override;
     uint8_t setCurrentAmount(int containerId, float currentAmount) override;
