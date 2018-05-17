@@ -20,16 +20,12 @@ FirebaseAdapter::~FirebaseAdapter() {
 uint8_t FirebaseAdapter::authenticate() {
   parseConfig();
 
-  char *reply;
-  uint8_t result = auth->signInWithEmailAndPassword(cfg, reply);
+  uint8_t result = auth->signInWithEmailAndPassword(cfg, authToken);
 
   if (result) {
     return 1;
   }
 
-  memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
-  // free(reply);
-  authToken[AUTHTOKEN_LENGTH] = '\0';
   return 0;
 }
 
@@ -258,11 +254,13 @@ uint8_t FirebaseAdapter::setContainerState(int containerId, const char *state) {
 }
 
 uint8_t FirebaseAdapter::getUpdateFrequency(int containerId, int *updateFrequency) {
-  if (containerId<0 || containerId>MAX_CONTAINERS) {
+  if (containerId<=0 || containerId>MAX_CONTAINERS) {
     return 1;
   }
 
   string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+"/updateFrequency.json?auth="+authToken+"'";
+
+  printf("REQUEST: %s\n", cmd.c_str());
 
   char msg[FIREBASE_REPLY_MAX];
   // executeCURL(msg, cmd.c_str());
@@ -270,7 +268,12 @@ uint8_t FirebaseAdapter::getUpdateFrequency(int containerId, int *updateFrequenc
 
   cJSON *reply = cJSON_Parse(msg);
 
+  char *out = cJSON_Print(reply);
+  printf("JSON: %s\n", out);
+
   *updateFrequency = reply->valueint;
+
+  printf("Update freq: %d\n", *updateFrequency);
 
   if (*updateFrequency<=0) {
     return 1;
