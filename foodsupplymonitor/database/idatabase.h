@@ -10,7 +10,7 @@
 class IDatabase {
   public:
     virtual ~IDatabase() {}
-    virtual uint8_t containerItemExists(int, int*) = 0;
+    virtual uint8_t containerItemExists(int, uint8_t*) = 0;
     virtual uint8_t createContainerItem(int) = 0;
     virtual uint8_t setCurrentAmount(int, float) = 0;
     virtual uint8_t setEmptyContainerWeight(int, float) = 0;
