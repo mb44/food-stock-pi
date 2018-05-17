@@ -4,6 +4,6 @@
 #include <string.h>
 
 void RESTHandlerUpdateFrequencyFake2::executeRequest(const char* req, char* reply) {
-  char src[] = "{\"updateFrequency\": 45}";
-  strcpy(reply, src);
+  char dbReply[] = "45";
+  strcpy(reply, dbReply);
 }

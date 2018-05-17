@@ -4,6 +4,6 @@
 #include <string.h>
 
 void RESTHandlerUpdateFrequencyFake1::executeRequest(const char* req, char* reply) {
-  char src[] = "{\"updateFrequency\": -5}";
-  strcpy(reply, src);
+  char dbReply[] = "-5";
+  strcpy(reply, dbReply);
 }
