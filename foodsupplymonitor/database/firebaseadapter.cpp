@@ -8,37 +8,37 @@
 
 using namespace std;
 
-FirebaseAdapter::FirebaseAdapter(IAuth *auth, IRESTHandler *rest, const char *firebaseConfig) 
+FirebaseAdapter::FirebaseAdapter(IAuth *auth, IRESTHandler *rest, const char *configPath) 
 : auth(auth),
-  rest(rest) {
-  parseConfig(firebaseConfig);
-
-  authenticate();
-}
+  rest(rest) ,
+  configPath(configPath)
+{}
 
 FirebaseAdapter::~FirebaseAdapter() {
 }
 
-void FirebaseAdapter::authenticate() {
-  char *reply;
-  uint8_t success =  auth->signInWithEmailAndPassword(cfg, reply);
+uint8_t FirebaseAdapter::authenticate() {
+  parseConfig();
 
-  if (success) {
-    perror("FAIL: could not retrieve firebase authentication key\n");
-    exit(EXIT_FAILURE);
+  char *reply;
+  uint8_t result = auth->signInWithEmailAndPassword(cfg, reply);
+
+  if (result) {
+    return 1;
   }
 
   memcpy(authToken, &reply[1], AUTHTOKEN_LENGTH+1);
   // free(reply);
   authToken[AUTHTOKEN_LENGTH] = '\0';
+  return 0;
 }
 
-void FirebaseAdapter::parseConfig(const char *firebaseConfig) {
+void FirebaseAdapter::parseConfig() {
   char line[FIREBASECONFIG_LINE_LENGTH_MAX];
 
   FILE *fp;
 
-  if ((fp = fopen(firebaseConfig, "r")) == NULL) {
+  if ((fp = fopen(configPath, "r")) == NULL) {
     perror("Error opening file\n");
     exit(EXIT_FAILURE);
   }
@@ -77,7 +77,7 @@ uint8_t FirebaseAdapter::containerItemExists(int containerId, int *exists) {
 
   cJSON *container = cJSON_GetArrayItem(reply, containerId+1);
 
-  // Check for a true value at the given key
+  // Check for truth value at the given key
   int containerIdExists = cJSON_IsTrue(container);
 
   if (containerIdExists) {
@@ -225,7 +225,7 @@ uint8_t FirebaseAdapter::getContainerState(int containerId, char *state) {
     return 1;
   }
 
-  // Copy the contents of reply-valuestring (char pointer) to the state char pointer)
+  // Copy the contents of reply->valuestring (char pointer) to the state char pointer
   memcpy(state, reply->valuestring, strlen(reply->valuestring)+1);
 
   cJSON_Delete(reply);
