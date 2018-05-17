@@ -5,6 +5,7 @@
 #include "../database/firebaseadapter.h"
 #include "stubs/resthandlerupdatefrequencyfake1.h"
 #include "stubs/resthandlerupdatefrequencyfake2.h"
+#include "stubs/resthandlercontaineritemsfake.h"
 #include "../radio/packer.h"
 #include "../database/resthandler.h"
 #include "../database/auth.h"
@@ -253,12 +254,92 @@ TEST(FirebaseAdapter_GetUpdateFrequency, UpdateFrequencyValid) {
   int scaleId = 13;
   int updateFrequency = 0;
   uint8_t result = db->getUpdateFrequency(scaleId, &updateFrequency);
-  uint8_t expectedResult = 0;
 
+  uint8_t expectedResult = 0;
   int expectedUpdateFrequency = 45;
 
-  //EXPECT_EQ(expectedResult, result);
+  EXPECT_EQ(expectedResult, result);
   EXPECT_EQ(expectedUpdateFrequency, updateFrequency);
+}
+
+
+// -----
+TEST(FirebaseAdapter_ContainerItemExists, ScaleIdNegative) {
+  RESTHandlerContainerItemsFake r;
+  IRESTHandler *rest = &r;
+
+  Auth a(rest);
+  IAuth *auth = &a;
+
+  FirebaseAdapter d(auth, rest, "../firebaseConfig.txt");
+  IDatabase *db = &d;
+
+  int scaleId = -1;
+  uint8_t exists = 0;
+  uint8_t result = db->containerItemExists(scaleId, &exists);
+
+  uint8_t expectedResult = 1;
+
+  EXPECT_EQ(expectedResult, result);
+}
+
+TEST(FirebaseAdapter_ContainerItemExists, ScaleIdEQ0) {
+  RESTHandlerContainerItemsFake r;
+  IRESTHandler *rest = &r;
+
+  Auth a(rest);
+  IAuth *auth = &a;
+
+  FirebaseAdapter d(auth, rest, "../firebaseConfig.txt");
+  IDatabase *db = &d;
+
+  int scaleId = 0;
+  uint8_t exists = 1;
+  uint8_t result = db->containerItemExists(scaleId, &exists);
+
+  uint8_t expectedResult = 0;
+  uint8_t expectedExists = 0;
+  EXPECT_EQ(expectedExists, exists);
+  EXPECT_EQ(expectedResult, result);
+}
+
+TEST(FirebaseAdapter_ContainerItemExists, ScaleIdEQ1) {
+  RESTHandlerContainerItemsFake r;
+  IRESTHandler *rest = &r;
+
+  Auth a(rest);
+  IAuth *auth = &a;
+
+  FirebaseAdapter d(auth, rest, "../firebaseConfig.txt");
+  IDatabase *db = &d;
+
+  int scaleId = 1;
+  uint8_t exists = 0;
+  uint8_t result = db->containerItemExists(scaleId, &exists);
+
+  uint8_t expectedResult = 0;
+  uint8_t expectedExists = 0;
+  EXPECT_EQ(expectedResult, result);
+  EXPECT_EQ(expectedExists, exists);
+}
+
+TEST(FirebaseAdapter_ContainerItemExists, ScaleIdEQ3) {
+  RESTHandlerContainerItemsFake r;
+  IRESTHandler *rest = &r;
+
+  Auth a(rest);
+  IAuth *auth = &a;
+
+  FirebaseAdapter d(auth, rest, "../firebaseConfig.txt");
+  IDatabase *db = &d;
+
+  int scaleId = 3;
+  uint8_t exists = 1;
+  uint8_t result = db->containerItemExists(scaleId, &exists);
+
+  uint8_t expectedResult = 0;
+  uint8_t expectedExists = 0;
+  EXPECT_EQ(expectedExists, exists);
 }
 
 int main(int argc, char **argv) {
