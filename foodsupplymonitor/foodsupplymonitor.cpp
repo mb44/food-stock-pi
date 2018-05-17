@@ -28,7 +28,15 @@ int main(int argc, char** argv){
   IRadio *radio = new RF24Adapter(pipes, packer);  
   IRESTHandler *rest =  new RESTHandler;
   IAuth *auth = new Auth(rest);
-  IDatabase *db = new FirebaseAdapter(auth, rest, "firebaseConfig.txt");
+  FirebaseAdapter *fb = new FirebaseAdapter(auth, rest, "firebaseConfig.txt");
+  IDatabase *db = fb;
+
+  uint8_t result = fb->authenticate();
+  if (result) {
+    perror("FAIL: could not authenticate\n");
+    exit(EXIT_FAILURE);
+  }
+
   INetworkFacade *networkFacade = new NetworkFacade(radio, db);
 
   // Print preamble:
@@ -36,6 +44,7 @@ int main(int argc, char** argv){
 
   networkFacade->handleNetwork();
 
+  // Clean up
   delete auth;
   delete rest;
   delete packer;
