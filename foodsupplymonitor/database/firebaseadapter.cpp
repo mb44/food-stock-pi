@@ -54,7 +54,7 @@ void FirebaseAdapter::parseConfig() {
   fclose(fp);
 }
 
-uint8_t FirebaseAdapter::containerItemExists(int containerId, int *exists) {
+uint8_t FirebaseAdapter::containerItemExists(int containerId, uint8_t *exists) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
   }
@@ -135,7 +135,6 @@ uint8_t FirebaseAdapter::setCurrentAmount(int containerId, float currentAmount) 
 
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   char msg[FIREBASE_REPLY_MAX];
-  // executeCURL(msg, cmd.c_str());
   rest->executeRequest(cmd.c_str(), msg);
 
   //cJSON *reply = cJSON_Parse(msg);
@@ -164,7 +163,6 @@ uint8_t FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyCon
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
-  // executeCURL(msg, cmd.c_str());
   rest->executeRequest(cmd.c_str(), msg);
 
   // cJSON *reply = cJSON_Parse(msg);
@@ -192,7 +190,6 @@ uint8_t FirebaseAdapter::setMaximumCapacity(int containerId, float maximumCapaci
   string cmd = "curl -X PATCH  -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
 
   char msg[FIREBASE_REPLY_MAX];
-  // executeCURL(msg, cmd.c_str());
   rest->executeRequest(cmd.c_str(), msg);
 
   //cJSON *reply = cJSON_Parse(msg);
@@ -212,7 +209,6 @@ uint8_t FirebaseAdapter::getContainerState(int containerId, char *state) {
 
   string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+"/containerState.json?auth="+authToken+"'";
   char msg[FIREBASE_REPLY_MAX];
-  // executeCURL(msg, cmd.c_str());
   rest->executeRequest(cmd.c_str(), msg);
 
   cJSON *reply = cJSON_Parse(msg);
@@ -241,7 +237,6 @@ uint8_t FirebaseAdapter::setContainerState(int containerId, const char *state) {
   string cmd = "curl -X PATCH -d '" + string(jsonString) + "' 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+".json?auth="+authToken+"'";
   
   char msg[FIREBASE_REPLY_MAX];
-  // executeCURL(msg, cmd.c_str());
   rest->executeRequest(cmd.c_str(), msg);
 
   //cJSON *reply = cJSON_Parse(msg);
@@ -254,26 +249,18 @@ uint8_t FirebaseAdapter::setContainerState(int containerId, const char *state) {
 }
 
 uint8_t FirebaseAdapter::getUpdateFrequency(int containerId, int *updateFrequency) {
-  if (containerId<=0 || containerId>MAX_CONTAINERS) {
+  if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
   }
 
   string cmd = "curl 'https://"+string(cfg.projectId)+".firebaseio.com/containers/"+to_string(containerId)+"/updateFrequency.json?auth="+authToken+"'";
 
-  printf("REQUEST: %s\n", cmd.c_str());
-
   char msg[FIREBASE_REPLY_MAX];
-  // executeCURL(msg, cmd.c_str());
   rest->executeRequest(cmd.c_str(), msg);
 
   cJSON *reply = cJSON_Parse(msg);
 
-  char *out = cJSON_Print(reply);
-  printf("JSON: %s\n", out);
-
   *updateFrequency = reply->valueint;
-
-  printf("Update freq: %d\n", *updateFrequency);
 
   if (*updateFrequency<=0) {
     return 1;
