@@ -23,7 +23,7 @@ class FirebaseAdapter : public IDatabase {
 
     uint8_t authenticate();
 
-    uint8_t containerItemExists(int containerId, int *exists) override;
+    uint8_t containerItemExists(int containerId, uint8_t *exists) override;
     uint8_t createContainerItem(int containerId) override;
     uint8_t setCurrentAmount(int containerId, float currentAmount) override;
     uint8_t setEmptyContainerWeight(int containerId, float emptyContainerWeight) override;
