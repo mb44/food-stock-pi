@@ -10,7 +10,7 @@ NetworkFacade::~NetworkFacade() {
 }
 
 void NetworkFacade::handleNetwork() {
-  //char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
+  char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
 
   // Listen, forever
   int scaleId = 0;
@@ -24,14 +24,13 @@ void NetworkFacade::handleNetwork() {
 	continue;
     }
     
-/*
+
     printf("Got payload value=%s\n\r", receivePayload);
     
-    for (int i=0; i<10; i++) {  
-       printf("Byte %d: %d\n", i, receivePayload[i]); 
+    //for (int i=0; i<10; i++) {  
+    //   printf("Byte %d: %d\n", i, receivePayload[i]); 
+    //}
 
-    }
-*/
 
     printf("Received a request\n");
     // 1. Check msg type
