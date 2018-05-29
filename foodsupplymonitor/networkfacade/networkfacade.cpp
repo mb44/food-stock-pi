@@ -42,7 +42,7 @@ void NetworkFacade::handleNetwork() {
     float measurementKilos;
     char containerState[30];
     int updateFrequencySeconds;
-    int exists = 0;
+    uint8_t exists = 0;
 
     switch (msgType) {
         case RADIO_RCV_MSG_TYPE_MEASUREMENT:
