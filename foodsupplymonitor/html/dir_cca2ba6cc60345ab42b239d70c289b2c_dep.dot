@@ -7,5 +7,5 @@ digraph "tests/stubs" {
   dir_cca2ba6cc60345ab42b239d70c289b2c [shape=box, label="stubs", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_cca2ba6cc60345ab42b239d70c289b2c.html"];
   }
   dir_212b08e736d9d694db45040b806dc585 [shape=box label="radio" URL="dir_212b08e736d9d694db45040b806dc585.html"];
-  dir_cca2ba6cc60345ab42b239d70c289b2c->dir_212b08e736d9d694db45040b806dc585 [headlabel="1", labeldistance=1.5 headhref="dir_000010_000004.html"];
+  dir_cca2ba6cc60345ab42b239d70c289b2c->dir_212b08e736d9d694db45040b806dc585 [headlabel="2", labeldistance=1.5 headhref="dir_000010_000004.html"];
 }

@@ -82,21 +82,76 @@ Collaboration diagram for Packer:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a74a0841e8e7c6246d55a2cd358c339f7"><td class="memItemLeft" align="right" valign="top"><a id="a74a0841e8e7c6246d55a2cd358c339f7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPacker.html#a74a0841e8e7c6246d55a2cd358c339f7">~Packer</a> ()</td></tr>
-<tr class="memdesc:a74a0841e8e7c6246d55a2cd358c339f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. <br /></td></tr>
+<tr class="memdesc:a74a0841e8e7c6246d55a2cd358c339f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
 <tr class="separator:a74a0841e8e7c6246d55a2cd358c339f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae01bf2b0e373b051f3190395d14dd88c"><td class="memItemLeft" align="right" valign="top"><a id="ae01bf2b0e373b051f3190395d14dd88c"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pack</b> (char *payload, const int scaleId, const uint8_t messageType) override</td></tr>
+<tr class="memitem:ae01bf2b0e373b051f3190395d14dd88c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPacker.html#ae01bf2b0e373b051f3190395d14dd88c">pack</a> (char *payload, const int scaleId, const uint8_t messageType) override</td></tr>
+<tr class="memdesc:ae01bf2b0e373b051f3190395d14dd88c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to pack data.  <a href="#ae01bf2b0e373b051f3190395d14dd88c">More...</a><br /></td></tr>
 <tr class="separator:ae01bf2b0e373b051f3190395d14dd88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42a1804775464dab14aa0533c0eff7b7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPacker.html#a42a1804775464dab14aa0533c0eff7b7">pack</a> (char *payload, int scaleId, uint8_t messageType, int updateFrequency) override</td></tr>
 <tr class="memdesc:a42a1804775464dab14aa0533c0eff7b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to pack data.  <a href="#a42a1804775464dab14aa0533c0eff7b7">More...</a><br /></td></tr>
 <tr class="separator:a42a1804775464dab14aa0533c0eff7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a530a0ec57010bd527ee31004ec4493a8"><td class="memItemLeft" align="right" valign="top"><a id="a530a0ec57010bd527ee31004ec4493a8"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>unpack</b> (const char *payload, int *scaleId, uint8_t *messageType, int *data) override</td></tr>
+<tr class="memitem:a530a0ec57010bd527ee31004ec4493a8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPacker.html#a530a0ec57010bd527ee31004ec4493a8">unpack</a> (const char *payload, int *scaleId, uint8_t *messageType, int *data) override</td></tr>
+<tr class="memdesc:a530a0ec57010bd527ee31004ec4493a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to unpack data.  <a href="#a530a0ec57010bd527ee31004ec4493a8">More...</a><br /></td></tr>
 <tr class="separator:a530a0ec57010bd527ee31004ec4493a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae01bf2b0e373b051f3190395d14dd88c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae01bf2b0e373b051f3190395d14dd88c">&#9670;&nbsp;</a></span>pack() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Packer::pack </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>payload</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>scaleId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>messageType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to pack data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">payload</td><td>a char array with the packed data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>The scale ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>The message type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIPacker.html">IPacker</a>.</p>
+
+</div>
+</div>
 <a id="a42a1804775464dab14aa0533c0eff7b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42a1804775464dab14aa0533c0eff7b7">&#9670;&nbsp;</a></span>pack()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a42a1804775464dab14aa0533c0eff7b7">&#9670;&nbsp;</a></span>pack() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,13 +199,76 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>unpack</b> (const 
 <p>Method to pack data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">the</td><td>data is packed into this variable. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>ID of scale </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">messageType</td><td>the message type </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">updateFrequency</td><td>the updatefrequency </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">payload</td><td>a char array with the packed data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>The scale ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>The message type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">updateFrequency</td><td>The update frequency. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIPacker.html">IPacker</a>.</p>
+
+</div>
+</div>
+<a id="a530a0ec57010bd527ee31004ec4493a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a530a0ec57010bd527ee31004ec4493a8">&#9670;&nbsp;</a></span>unpack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Packer::unpack </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>payload</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>scaleId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>messageType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to unpack data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>a char array with the packed data. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">scaleId</td><td>The scale ID. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">messageType</td><td>The message type. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>The data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
 
 <p>Implements <a class="el" href="classIPacker.html">IPacker</a>.</p>
 

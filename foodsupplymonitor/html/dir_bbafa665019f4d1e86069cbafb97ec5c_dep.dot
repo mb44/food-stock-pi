@@ -1,0 +1,8 @@
+digraph "networkfacade" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_bbafa665019f4d1e86069cbafb97ec5c [shape=box, label="networkfacade", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_bbafa665019f4d1e86069cbafb97ec5c.html"];
+  dir_f32c53f2c0f0ccaeb11076e30674d5f4 [shape=box label="database" URL="dir_f32c53f2c0f0ccaeb11076e30674d5f4.html"];
+  dir_bbafa665019f4d1e86069cbafb97ec5c->dir_f32c53f2c0f0ccaeb11076e30674d5f4 [headlabel="1", labeldistance=1.5 headhref="dir_000003_000000.html"];
+}

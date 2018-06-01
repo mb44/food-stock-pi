@@ -80,16 +80,92 @@ Collaboration diagram for Auth:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad396d04707aa3fe6c89ff250120fe2db"><td class="memItemLeft" align="right" valign="top"><a id="ad396d04707aa3fe6c89ff250120fe2db"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Auth</b> (<a class="el" href="classIRESTHandler.html">IRESTHandler</a> *rest)</td></tr>
+<tr class="memitem:ad396d04707aa3fe6c89ff250120fe2db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAuth.html#ad396d04707aa3fe6c89ff250120fe2db">Auth</a> (<a class="el" href="classIRESTHandler.html">IRESTHandler</a> *rest)</td></tr>
+<tr class="memdesc:ad396d04707aa3fe6c89ff250120fe2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ad396d04707aa3fe6c89ff250120fe2db">More...</a><br /></td></tr>
 <tr class="separator:ad396d04707aa3fe6c89ff250120fe2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab8fe11bea5e3a0794a6056c0b1d24b6"><td class="memItemLeft" align="right" valign="top"><a id="aab8fe11bea5e3a0794a6056c0b1d24b6"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>signInWithEmailAndPassword</b> (const <a class="el" href="structFirebaseConfig.html">FirebaseConfig</a> config, char *authToken) override</td></tr>
+<tr class="memitem:aab8fe11bea5e3a0794a6056c0b1d24b6"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAuth.html#aab8fe11bea5e3a0794a6056c0b1d24b6">signInWithEmailAndPassword</a> (const <a class="el" href="structFirebaseConfig.html">FirebaseConfig</a> config, char *authToken) override</td></tr>
+<tr class="memdesc:aab8fe11bea5e3a0794a6056c0b1d24b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to sign in user.  <a href="#aab8fe11bea5e3a0794a6056c0b1d24b6">More...</a><br /></td></tr>
 <tr class="separator:aab8fe11bea5e3a0794a6056c0b1d24b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad396d04707aa3fe6c89ff250120fe2db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad396d04707aa3fe6c89ff250120fe2db">&#9670;&nbsp;</a></span>Auth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Auth::Auth </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIRESTHandler.html">IRESTHandler</a> *&#160;</td>
+          <td class="paramname"><em>rest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rest</td><td>pointer to a <a class="el" href="classIRESTHandler.html">IRESTHandler</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aab8fe11bea5e3a0794a6056c0b1d24b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8fe11bea5e3a0794a6056c0b1d24b6">&#9670;&nbsp;</a></span>signInWithEmailAndPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Auth::signInWithEmailAndPassword </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structFirebaseConfig.html">FirebaseConfig</a>&#160;</td>
+          <td class="paramname"><em>cfg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>authToken</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to sign in user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">cfg</td><td>a <a class="el" href="structFirebaseConfig.html">FirebaseConfig</a> containing credentials. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">authToken</td><td>This variable is set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIAuth.html">IAuth</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>database/<a class="el" href="auth_8h_source.html">auth.h</a></li>
-<li>database/auth.cpp</li>
+<li>database/<a class="el" href="auth_8cpp.html">auth.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

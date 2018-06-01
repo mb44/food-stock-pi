@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7epacker',['~Packer',['../classPacker.html#a74a0841e8e7c6246d55a2cd358c339f7',1,'Packer']]]
+  ['containeritemexists',['containerItemExists',['../classFirebaseAdapter.html#ae8d0c326033bc5e07a9268c04ebca7f8',1,'FirebaseAdapter']]],
+  ['createcontaineritem',['createContainerItem',['../classFirebaseAdapter.html#aa5975a805a936b596ee3adde41a0f722',1,'FirebaseAdapter']]]
 ];

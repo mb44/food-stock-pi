@@ -80,19 +80,202 @@ Collaboration diagram for RF24Adapter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7e164d9e1610b342b35f2be351733b26"><td class="memItemLeft" align="right" valign="top"><a id="a7e164d9e1610b342b35f2be351733b26"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RF24Adapter</b> (const uint64_t <a class="el" href="foodsupplymonitor_8cpp.html#a84efa220c867ad800821ce885fa1adab">pipes</a>[2], <a class="el" href="classIPacker.html">IPacker</a> *packer)</td></tr>
+<tr class="memitem:a7e164d9e1610b342b35f2be351733b26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRF24Adapter.html#a7e164d9e1610b342b35f2be351733b26">RF24Adapter</a> (const uint64_t pipes[2], <a class="el" href="classIPacker.html">IPacker</a> *packer)</td></tr>
+<tr class="memdesc:a7e164d9e1610b342b35f2be351733b26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a7e164d9e1610b342b35f2be351733b26">More...</a><br /></td></tr>
 <tr class="separator:a7e164d9e1610b342b35f2be351733b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68a85fab00d653a194efd7b00839cf02"><td class="memItemLeft" align="right" valign="top"><a id="a68a85fab00d653a194efd7b00839cf02"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>receive</b> (int *scaleId, uint8_t *messageType, int *data) override</td></tr>
+<tr class="memitem:a11b2d54034edc1c7b5a5b3fdb084e43f"><td class="memItemLeft" align="right" valign="top"><a id="a11b2d54034edc1c7b5a5b3fdb084e43f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRF24Adapter.html#a11b2d54034edc1c7b5a5b3fdb084e43f">~RF24Adapter</a> ()</td></tr>
+<tr class="memdesc:a11b2d54034edc1c7b5a5b3fdb084e43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:a11b2d54034edc1c7b5a5b3fdb084e43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a85fab00d653a194efd7b00839cf02"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRF24Adapter.html#a68a85fab00d653a194efd7b00839cf02">receive</a> (int *scaleId, uint8_t *messageType, int *data) override</td></tr>
+<tr class="memdesc:a68a85fab00d653a194efd7b00839cf02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to receive data.  <a href="#a68a85fab00d653a194efd7b00839cf02">More...</a><br /></td></tr>
 <tr class="separator:a68a85fab00d653a194efd7b00839cf02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc0178dcb8a83b43b988b21e7f85fa91"><td class="memItemLeft" align="right" valign="top"><a id="adc0178dcb8a83b43b988b21e7f85fa91"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>powerDown</b> (const int scaleId) override</td></tr>
+<tr class="memitem:adc0178dcb8a83b43b988b21e7f85fa91"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRF24Adapter.html#adc0178dcb8a83b43b988b21e7f85fa91">powerDown</a> (const int scaleId) override</td></tr>
+<tr class="memdesc:adc0178dcb8a83b43b988b21e7f85fa91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method send a power down response.  <a href="#adc0178dcb8a83b43b988b21e7f85fa91">More...</a><br /></td></tr>
 <tr class="separator:adc0178dcb8a83b43b988b21e7f85fa91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2455a180f8cfac9eb5cf5a9103385ef"><td class="memItemLeft" align="right" valign="top"><a id="ab2455a180f8cfac9eb5cf5a9103385ef"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>setUpdateFrequency</b> (const int scaleId, const int updateFrequency) override</td></tr>
+<tr class="memitem:ab2455a180f8cfac9eb5cf5a9103385ef"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRF24Adapter.html#ab2455a180f8cfac9eb5cf5a9103385ef">setUpdateFrequency</a> (const int scaleId, const int updateFrequency) override</td></tr>
+<tr class="memdesc:ab2455a180f8cfac9eb5cf5a9103385ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to set the update frequency.  <a href="#ab2455a180f8cfac9eb5cf5a9103385ef">More...</a><br /></td></tr>
 <tr class="separator:ab2455a180f8cfac9eb5cf5a9103385ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7e164d9e1610b342b35f2be351733b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e164d9e1610b342b35f2be351733b26">&#9670;&nbsp;</a></span>RF24Adapter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RF24Adapter::RF24Adapter </td>
+          <td>(</td>
+          <td class="paramtype">const uint64_t&#160;</td>
+          <td class="paramname"><em>pipes</em>[2], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classIPacker.html">IPacker</a> *&#160;</td>
+          <td class="paramname"><em>packer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pipes[2]</td><td>Pipes/addresses of the two nodes to communicate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">packer</td><td>pointer to a packer reference. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="adc0178dcb8a83b43b988b21e7f85fa91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc0178dcb8a83b43b988b21e7f85fa91">&#9670;&nbsp;</a></span>powerDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RF24Adapter::powerDown </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>scaleId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method send a power down response. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>The scale ID. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIRadio.html">IRadio</a>.</p>
+
+</div>
+</div>
+<a id="a68a85fab00d653a194efd7b00839cf02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68a85fab00d653a194efd7b00839cf02">&#9670;&nbsp;</a></span>receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RF24Adapter::receive </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>scaleId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>messageType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to receive data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">scaleId</td><td>The scale ID. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">scaleId</td><td>The message type. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>The data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIRadio.html">IRadio</a>.</p>
+
+</div>
+</div>
+<a id="ab2455a180f8cfac9eb5cf5a9103385ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2455a180f8cfac9eb5cf5a9103385ef">&#9670;&nbsp;</a></span>setUpdateFrequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RF24Adapter::setUpdateFrequency </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>scaleId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>updateFrequency</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to set the update frequency. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">scaleId</td><td>The scale ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">updateFrequency</td><td>The update frequency. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIRadio.html">IRadio</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>radio/<a class="el" href="rf24adapter_8h_source.html">rf24adapter.h</a></li>
 <li>radio/rf24adapter.cpp</li>

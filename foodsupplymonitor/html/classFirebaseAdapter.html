@@ -80,40 +80,464 @@ Collaboration diagram for FirebaseAdapter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a60547d354e33fe2a19afd8e3cb238a49"><td class="memItemLeft" align="right" valign="top"><a id="a60547d354e33fe2a19afd8e3cb238a49"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>FirebaseAdapter</b> (<a class="el" href="classIAuth.html">IAuth</a> *auth, <a class="el" href="classIRESTHandler.html">IRESTHandler</a> *rest, const char *configPath)</td></tr>
+<tr class="memitem:a60547d354e33fe2a19afd8e3cb238a49"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#a60547d354e33fe2a19afd8e3cb238a49">FirebaseAdapter</a> (<a class="el" href="classIAuth.html">IAuth</a> *auth, <a class="el" href="classIRESTHandler.html">IRESTHandler</a> *rest, const char *configPath)</td></tr>
+<tr class="memdesc:a60547d354e33fe2a19afd8e3cb238a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a60547d354e33fe2a19afd8e3cb238a49">More...</a><br /></td></tr>
 <tr class="separator:a60547d354e33fe2a19afd8e3cb238a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6baee581378675089a0bf041bba5b41"><td class="memItemLeft" align="right" valign="top"><a id="ae6baee581378675089a0bf041bba5b41"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#ae6baee581378675089a0bf041bba5b41">~FirebaseAdapter</a> ()</td></tr>
+<tr class="memdesc:ae6baee581378675089a0bf041bba5b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:ae6baee581378675089a0bf041bba5b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a843c933c761381a75c0dd14c4b1b9e19"><td class="memItemLeft" align="right" valign="top"><a id="a843c933c761381a75c0dd14c4b1b9e19"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>authenticate</b> ()</td></tr>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#a843c933c761381a75c0dd14c4b1b9e19">authenticate</a> ()</td></tr>
+<tr class="memdesc:a843c933c761381a75c0dd14c4b1b9e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to authenticate user. <br /></td></tr>
 <tr class="separator:a843c933c761381a75c0dd14c4b1b9e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8d0c326033bc5e07a9268c04ebca7f8"><td class="memItemLeft" align="right" valign="top"><a id="ae8d0c326033bc5e07a9268c04ebca7f8"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>containerItemExists</b> (int containerId, uint8_t *exists) override</td></tr>
+<tr class="memitem:ae8d0c326033bc5e07a9268c04ebca7f8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#ae8d0c326033bc5e07a9268c04ebca7f8">containerItemExists</a> (int containerId, uint8_t *exists) override</td></tr>
+<tr class="memdesc:ae8d0c326033bc5e07a9268c04ebca7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to sign in user.  <a href="#ae8d0c326033bc5e07a9268c04ebca7f8">More...</a><br /></td></tr>
 <tr class="separator:ae8d0c326033bc5e07a9268c04ebca7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5975a805a936b596ee3adde41a0f722"><td class="memItemLeft" align="right" valign="top"><a id="aa5975a805a936b596ee3adde41a0f722"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>createContainerItem</b> (int containerId) override</td></tr>
+<tr class="memitem:aa5975a805a936b596ee3adde41a0f722"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#aa5975a805a936b596ee3adde41a0f722">createContainerItem</a> (int containerId) override</td></tr>
+<tr class="memdesc:aa5975a805a936b596ee3adde41a0f722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to create a container item.  <a href="#aa5975a805a936b596ee3adde41a0f722">More...</a><br /></td></tr>
 <tr class="separator:aa5975a805a936b596ee3adde41a0f722"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa050868f84ada58a0a07f1963b8fe253"><td class="memItemLeft" align="right" valign="top"><a id="aa050868f84ada58a0a07f1963b8fe253"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>setCurrentAmount</b> (int containerId, float currentAmount) override</td></tr>
+<tr class="memitem:aa050868f84ada58a0a07f1963b8fe253"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#aa050868f84ada58a0a07f1963b8fe253">setCurrentAmount</a> (int containerId, float currentAmount) override</td></tr>
+<tr class="memdesc:aa050868f84ada58a0a07f1963b8fe253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to set current amount.  <a href="#aa050868f84ada58a0a07f1963b8fe253">More...</a><br /></td></tr>
 <tr class="separator:aa050868f84ada58a0a07f1963b8fe253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b99bff854be97b251e3bc0ecd6e0d4"><td class="memItemLeft" align="right" valign="top"><a id="ac5b99bff854be97b251e3bc0ecd6e0d4"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>setEmptyContainerWeight</b> (int containerId, float emptyContainerWeight) override</td></tr>
+<tr class="memitem:ac5b99bff854be97b251e3bc0ecd6e0d4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#ac5b99bff854be97b251e3bc0ecd6e0d4">setEmptyContainerWeight</a> (int containerId, float emptyContainerWeight) override</td></tr>
+<tr class="memdesc:ac5b99bff854be97b251e3bc0ecd6e0d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to set empty container weight.  <a href="#ac5b99bff854be97b251e3bc0ecd6e0d4">More...</a><br /></td></tr>
 <tr class="separator:ac5b99bff854be97b251e3bc0ecd6e0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a296a3cad94751444baa49a1463ef8225"><td class="memItemLeft" align="right" valign="top"><a id="a296a3cad94751444baa49a1463ef8225"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>setMaximumCapacity</b> (int containerId, float maximumCapacity) override</td></tr>
+<tr class="memitem:a296a3cad94751444baa49a1463ef8225"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#a296a3cad94751444baa49a1463ef8225">setMaximumCapacity</a> (int containerId, float maximumCapacity) override</td></tr>
+<tr class="memdesc:a296a3cad94751444baa49a1463ef8225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to set maximum capacity.  <a href="#a296a3cad94751444baa49a1463ef8225">More...</a><br /></td></tr>
 <tr class="separator:a296a3cad94751444baa49a1463ef8225"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac248ac1f1d7b5b6b21e29810e13edcce"><td class="memItemLeft" align="right" valign="top"><a id="ac248ac1f1d7b5b6b21e29810e13edcce"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>getContainerState</b> (int containerId, char *state) override</td></tr>
+<tr class="memitem:ac248ac1f1d7b5b6b21e29810e13edcce"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#ac248ac1f1d7b5b6b21e29810e13edcce">getContainerState</a> (int containerId, char *state) override</td></tr>
+<tr class="memdesc:ac248ac1f1d7b5b6b21e29810e13edcce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to get the container state.  <a href="#ac248ac1f1d7b5b6b21e29810e13edcce">More...</a><br /></td></tr>
 <tr class="separator:ac248ac1f1d7b5b6b21e29810e13edcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbe38a62fbbe8e5cc65dd251e85275e3"><td class="memItemLeft" align="right" valign="top"><a id="abbe38a62fbbe8e5cc65dd251e85275e3"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>setContainerState</b> (int containerId, const char *state) override</td></tr>
+<tr class="memitem:abbe38a62fbbe8e5cc65dd251e85275e3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#abbe38a62fbbe8e5cc65dd251e85275e3">setContainerState</a> (int containerId, const char *state) override</td></tr>
+<tr class="memdesc:abbe38a62fbbe8e5cc65dd251e85275e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to set container state.  <a href="#abbe38a62fbbe8e5cc65dd251e85275e3">More...</a><br /></td></tr>
 <tr class="separator:abbe38a62fbbe8e5cc65dd251e85275e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafd56bd210d91b820f4cc015d95db9e9"><td class="memItemLeft" align="right" valign="top"><a id="aafd56bd210d91b820f4cc015d95db9e9"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>getUpdateFrequency</b> (int containerId, int *updateFrequency) override</td></tr>
+<tr class="memitem:aafd56bd210d91b820f4cc015d95db9e9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFirebaseAdapter.html#aafd56bd210d91b820f4cc015d95db9e9">getUpdateFrequency</a> (int containerId, int *updateFrequency) override</td></tr>
+<tr class="memdesc:aafd56bd210d91b820f4cc015d95db9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to get the update frequency.  <a href="#aafd56bd210d91b820f4cc015d95db9e9">More...</a><br /></td></tr>
 <tr class="separator:aafd56bd210d91b820f4cc015d95db9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a60547d354e33fe2a19afd8e3cb238a49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60547d354e33fe2a19afd8e3cb238a49">&#9670;&nbsp;</a></span>FirebaseAdapter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FirebaseAdapter::FirebaseAdapter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIAuth.html">IAuth</a> *&#160;</td>
+          <td class="paramname"><em>auth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classIRESTHandler.html">IRESTHandler</a> *&#160;</td>
+          <td class="paramname"><em>rest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>configPath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">auth</td><td>pointer to auth interface. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rest</td><td>pointer to rest interface. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">configPath</td><td>string containing the file path to Firebase config file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae8d0c326033bc5e07a9268c04ebca7f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d0c326033bc5e07a9268c04ebca7f8">&#9670;&nbsp;</a></span>containerItemExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::containerItemExists </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>exists</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to sign in user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">exists</td><td>contains 0 if container exists true and 1 otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="aa5975a805a936b596ee3adde41a0f722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5975a805a936b596ee3adde41a0f722">&#9670;&nbsp;</a></span>createContainerItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::createContainerItem </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to create a container item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="ac248ac1f1d7b5b6b21e29810e13edcce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac248ac1f1d7b5b6b21e29810e13edcce">&#9670;&nbsp;</a></span>getContainerState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::getContainerState </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to get the container state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">state</td><td>The current container state. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="aafd56bd210d91b820f4cc015d95db9e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafd56bd210d91b820f4cc015d95db9e9">&#9670;&nbsp;</a></span>getUpdateFrequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::getUpdateFrequency </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>updateFrequency</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to get the update frequency. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">updateFrequency</td><td>The update frequency of the container. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="abbe38a62fbbe8e5cc65dd251e85275e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe38a62fbbe8e5cc65dd251e85275e3">&#9670;&nbsp;</a></span>setContainerState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::setContainerState </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to set container state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>A char pointer containing a string of the state. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="aa050868f84ada58a0a07f1963b8fe253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa050868f84ada58a0a07f1963b8fe253">&#9670;&nbsp;</a></span>setCurrentAmount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::setCurrentAmount </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>currentAmount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to set current amount. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">currentAmount</td><td>The current amount. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="ac5b99bff854be97b251e3bc0ecd6e0d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b99bff854be97b251e3bc0ecd6e0d4">&#9670;&nbsp;</a></span>setEmptyContainerWeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::setEmptyContainerWeight </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>emptyContainerWeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to set empty container weight. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">emptyContainerWeight</td><td>The empty container weight. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
+<a id="a296a3cad94751444baa49a1463ef8225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a296a3cad94751444baa49a1463ef8225">&#9670;&nbsp;</a></span>setMaximumCapacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FirebaseAdapter::setMaximumCapacity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>containerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maximumCapacity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method to set maximum capacity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">containerId</td><td>The container ID. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maximumCapacity</td><td>The maximum capacity. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success and 1 otherwise. </dd></dl>
+
+<p>Implements <a class="el" href="classIDatabase.html">IDatabase</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>database/<a class="el" href="firebaseadapter_8h_source.html">firebaseadapter.h</a></li>
-<li>database/firebaseadapter.cpp</li>
+<li>database/<a class="el" href="firebaseadapter_8cpp.html">firebaseadapter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

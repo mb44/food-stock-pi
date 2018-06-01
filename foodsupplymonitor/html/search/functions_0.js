@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pack',['pack',['../classPacker.html#a42a1804775464dab14aa0533c0eff7b7',1,'Packer']]]
+  ['auth',['Auth',['../classAuth.html#ad396d04707aa3fe6c89ff250120fe2db',1,'Auth']]],
+  ['authenticate',['authenticate',['../classFirebaseAdapter.html#a843c933c761381a75c0dd14c4b1b9e19',1,'FirebaseAdapter']]]
 ];
