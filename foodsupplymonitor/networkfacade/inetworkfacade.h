@@ -4,6 +4,9 @@
 #include "../radio/rf24adapter.h"
 #include "../database/firebaseadapter.h"
 
+/*! \file inetworkfacade.h
+    \brief Interface for NetworkFacade.
+*/
 class INetworkFacade { 
    
   public:

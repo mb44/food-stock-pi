@@ -6,6 +6,10 @@
 #include "config.h"
 #include "cjson.h"
 
+/*! \file iauth.h
+    \brief Interface for user authentiation with email and password
+*/
+
 class IAuth {
   public:
     virtual ~IAuth() {}

@@ -3,6 +3,9 @@
 
 #include "iresthandler.h"
 
+/*! \file resthandler.h
+    \brief Implementaion of rest handler functionality
+*/
 class RESTHandler : public IRESTHandler {
   public:
     void executeRequest(const char *req, char *reply) override;

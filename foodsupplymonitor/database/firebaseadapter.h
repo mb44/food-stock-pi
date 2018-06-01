@@ -7,6 +7,9 @@
 #include <iostream>
 #include "iresthandler.h"
 
+/*! \file firebaseadapter.h
+    \brief Implementation for database operations
+*/
 class FirebaseAdapter : public IDatabase {
   private:
     FirebaseConfig cfg;

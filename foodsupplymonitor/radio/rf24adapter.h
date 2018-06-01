@@ -11,6 +11,9 @@
 #define PAYLOAD_SIZE_INCREMENTS_BY 1
 #define NEXT_PAYLOAD_SIZE 1
 
+/*! \file radio.h
+    \brief Implementation of radio communication.
+*/
 class RF24Adapter : public IRadio {
   private:
     int minPayloadSize;

@@ -5,6 +5,9 @@
 #include "radiodefines.h"
 #include <stdint.h>
 
+/*! \file iradio.h
+    \brief Interface for radio communication.
+*/
 class IRadio {
   public:
     virtual ~IRadio() {}

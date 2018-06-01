@@ -3,6 +3,9 @@
 
 #include "inetworkfacade.h"
 
+/*! \file networkfacade.h
+    \brief Implementation of NetworkFacade.
+*/
 
 class NetworkFacade : public INetworkFacade { 
   private:

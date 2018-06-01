@@ -8,15 +8,28 @@
 
 using namespace std;
 
+/*! \file firebaseadapter.cpp
+    \brief Implementation for database operations.
+*/
+
+/*! \brief Constructor.
+	\param[in] auth pointer to auth interface.
+	\param[in] rest pointer to rest interface.
+	\param[in] configPath string containing the file path to Firebase config file.
+*/
 FirebaseAdapter::FirebaseAdapter(IAuth *auth, IRESTHandler *rest, const char *configPath) 
 : auth(auth),
   rest(rest) ,
   configPath(configPath)
 {}
 
+/*! \brief Destructor
+*/
 FirebaseAdapter::~FirebaseAdapter() {
 }
 
+/*! \brief Method to authenticate user.
+*/
 uint8_t FirebaseAdapter::authenticate() {
   parseConfig();
 
@@ -29,6 +42,8 @@ uint8_t FirebaseAdapter::authenticate() {
   return 0;
 }
 
+/*! \brief Method to parse the Firebase configuration file.
+*/
 void FirebaseAdapter::parseConfig() {
   char line[FIREBASECONFIG_LINE_LENGTH_MAX];
 
@@ -54,6 +69,11 @@ void FirebaseAdapter::parseConfig() {
   fclose(fp);
 }
 
+/*! \brief Method to sign in user.
+	\param[in] containerId The container ID.
+	\param[out] exists contains 0 if container exists true and 1 otherwise.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::containerItemExists(int containerId, uint8_t *exists) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -87,6 +107,10 @@ uint8_t FirebaseAdapter::containerItemExists(int containerId, uint8_t *exists) {
   return 0;
 }
 
+/*! \brief Method to create a container item.
+	\param[in] containerId The container ID.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::createContainerItem(int containerId) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -121,6 +145,11 @@ uint8_t FirebaseAdapter::createContainerItem(int containerId) {
   return 0;
 }
 
+/*! \brief Method to set current amount.
+	\param[in] containerId The container ID.
+	\param[in] currentAmount The current amount.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::setCurrentAmount(int containerId, float currentAmount) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -148,6 +177,11 @@ uint8_t FirebaseAdapter::setCurrentAmount(int containerId, float currentAmount) 
 
 }
 
+/*! \brief Method to set empty container weight.
+	\param[in] containerId The container ID.
+	\param[in] emptyContainerWeight The empty container weight.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyContainerWeight) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -175,6 +209,11 @@ uint8_t FirebaseAdapter::setEmptyContainerWeight(int containerId, float emptyCon
 
 }
 
+/*! \brief Method to set maximum capacity.
+	\param[in] containerId The container ID.
+	\param[in] maximumCapacity The maximum capacity.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::setMaximumCapacity(int containerId, float maximumCapacity) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -202,6 +241,11 @@ uint8_t FirebaseAdapter::setMaximumCapacity(int containerId, float maximumCapaci
 
 }
 
+/*! \brief Method to get the container state.
+	\param[in] containerId The container ID.
+	\param[out] state The current container state.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::getContainerState(int containerId, char *state) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -225,6 +269,11 @@ uint8_t FirebaseAdapter::getContainerState(int containerId, char *state) {
   return 0;
 }
 
+/*! \brief Method to set container state.
+	\param[in] containerId The container ID.
+	\param[in] state A char pointer containing a string of the state.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::setContainerState(int containerId, const char *state) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;
@@ -248,6 +297,11 @@ uint8_t FirebaseAdapter::setContainerState(int containerId, const char *state) {
   return 0;
 }
 
+/*! \brief Method to get the update frequency.
+	\param[in] containerId The container ID.
+	\param[out] updateFrequency The update frequency of the container.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t FirebaseAdapter::getUpdateFrequency(int containerId, int *updateFrequency) {
   if (containerId<0 || containerId>MAX_CONTAINERS) {
     return 1;

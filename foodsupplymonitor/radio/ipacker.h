@@ -4,6 +4,10 @@
 #include "../defines.h"
 #include <stdint.h>
 
+/*! \file ipacker.h
+    \brief Interface for pack and unpack functionality.
+*/
+
 class IPacker {
   public:
     virtual ~IPacker() {}

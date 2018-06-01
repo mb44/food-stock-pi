@@ -3,6 +3,10 @@
 
 #include "ipacker.h"
 
+/*! \file packer.h
+    \brief Implementation of pack and unpack functionality.
+*/
+
 class Packer : public IPacker {
   public:
     ~Packer();

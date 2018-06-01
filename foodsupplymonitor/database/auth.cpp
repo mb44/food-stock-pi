@@ -1,3 +1,6 @@
+/*! \file auth.cpp
+    \brief Implementation for user authentiation with email and password.
+*/
 #include "auth.h"
 #include <string>
 #include <string.h>
@@ -8,10 +11,18 @@
 
 using namespace std;
 
+/*! \brief Constructor
+	\param[in]  rest pointer to a IRESTHandler
+*/
 Auth::Auth(IRESTHandler *rest)
 : rest(rest) 
 {}
 
+/*! \brief Method to sign in user.
+	\param[in]  cfg a FirebaseConfig containing credentials.
+	\param[out] authToken This variable is set.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t Auth::signInWithEmailAndPassword(const FirebaseConfig cfg, char *authToken) {
   string tmp = "curl https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="+string(cfg.apiKey)+" -H 'Content-Type: application/json' --data-binary '{\"email\":\""+string(cfg.email)+"\",\"password\":\""+string(cfg.password)+"\",\"returnSecureToken\":true}'";
  

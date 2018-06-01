@@ -1,3 +1,6 @@
+/*! \file dbdefines.h
+    \brief Contains database related defines.
+*/
 #ifndef DB_DEFINES_H
 #define DB_DEFINES_H
 

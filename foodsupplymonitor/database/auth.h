@@ -4,6 +4,9 @@
 #include "iauth.h"
 #include "iresthandler.h"
 
+/*! \file auth.h
+    \brief Implementation for user authentiation with email and password
+*/
 class Auth : public IAuth {
   private:
   

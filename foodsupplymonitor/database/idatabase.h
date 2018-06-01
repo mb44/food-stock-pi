@@ -7,6 +7,9 @@
 #include <string>
 #include "cjson.h"
 
+/*! \file idatabase.h
+    \brief Interface for database operations
+*/
 class IDatabase {
   public:
     virtual ~IDatabase() {}

@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*! \file resthandler.cpp
+    \brief Implementaion of rest handler functionality
+*/
+
+/*! \brief Method to execute an HTTP request
+	\param[in]  req a char array containing the request
+	\param[out] reply a char a array containg the response
+*/
 void RESTHandler::executeRequest(const char* req, char* reply) {
   FILE *fpipe;
 

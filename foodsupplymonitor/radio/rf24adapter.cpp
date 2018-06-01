@@ -1,5 +1,11 @@
 #include "rf24adapter.h"
 
+/*! \file radio.cpp
+    \brief Implementation of radio communication.
+*/
+
+/*! \brief Method to setup the radio.
+*/
 void RF24Adapter::setupRadio() {
   minPayloadSize = MIN_PAYLOAD_SIZE;
   maxPayloadSize = MAX_RCV_PAYLOAD_SIZE;
@@ -48,6 +54,10 @@ void RF24Adapter::setupRadio() {
   radio.startListening();
 }
 
+/*! \brief Constructor
+	\param[in] pipes[2] Pipes/addresses of the two nodes to communicate.
+	\param[in] packer pointer to a packer reference.
+*/
 RF24Adapter::RF24Adapter(const uint64_t pipes[2], IPacker *packer) :
   radio(RPI_V2_GPIO_P1_15, RPI_V2_GPIO_P1_24, BCM2835_SPI_SPEED_8MHZ),
   packer(packer)
@@ -57,9 +67,17 @@ RF24Adapter::RF24Adapter(const uint64_t pipes[2], IPacker *packer) :
   setupRadio();
 }
 
+/*! \brief Destructor
+*/
 RF24Adapter::~RF24Adapter() {
 }
 
+/*! \brief Method to receive data.
+	\param[out] scaleId The scale ID.
+	\param[out] scaleId The message type.
+	\param[out] data The data.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t RF24Adapter::receive(int *scaleId, uint8_t *messageType, int *data) {
   printf("Radio communication - Ready to receive\n");
   // If there is data ready
@@ -97,6 +115,11 @@ uint8_t RF24Adapter::receive(int *scaleId, uint8_t *messageType, int *data) {
   }
 }
 
+/*! \brief Method to set the update frequency.
+	\param[in] scaleId The scale ID.
+	\param[in] updateFrequency The update frequency.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t RF24Adapter::setUpdateFrequency(const int scaleId, const int updateFrequency) {
   if (scaleId<0 || scaleId>MAX_CONTAINERS) {
     return 1;
@@ -113,6 +136,10 @@ uint8_t RF24Adapter::setUpdateFrequency(const int scaleId, const int updateFrequ
   return 0;
 }
 
+/*! \brief Method send a power down response.
+	\param[in] scaleId The scale ID.
+	\returns 0 on success and 1 otherwise.
+*/
 uint8_t RF24Adapter::powerDown(const int scaleId) {
   if (scaleId<0 || scaleId>MAX_CONTAINERS) {
     return 1;

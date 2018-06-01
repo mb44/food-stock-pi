@@ -1,14 +1,27 @@
 #include "networkfacade.h"
 #include <inttypes.h>
 
+/*! \file networkfacade.cpp
+    \brief Implementation of NetworkFacade.
+*/
+
+/*! \brief Constructor
+	\param[in] r Pointer to an IRadio interface.
+	\param[in] d Pointer to an IDatabase interfacde.
+
+*/
 NetworkFacade::NetworkFacade(IRadio *r, IDatabase *d) 
   : radio(r),
     db(d)
 {}
 
+/*! \brief Destructor
+*/
 NetworkFacade::~NetworkFacade() {
 }
 
+/*! \brief Method to handle network
+*/
 void NetworkFacade::handleNetwork() {
   char receivePayload[MAX_RCV_PAYLOAD_SIZE+1];
 

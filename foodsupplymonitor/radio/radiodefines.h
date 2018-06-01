@@ -1,3 +1,7 @@
+/*! \file radiodefines.h
+    \brief Contains constants used by the radio module.
+*/
+
 #ifndef RADIODEFINES_H
 #define RADIODEFINES_H
 
