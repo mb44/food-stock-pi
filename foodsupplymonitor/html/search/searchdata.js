@@ -1,24 +1,30 @@
 var indexSectionsWithContent =
 {
-  0: "dfpr",
-  1: "df",
-  2: "p",
-  3: "r"
+  0: "acdefinpr~",
+  1: "acefinpr",
+  2: "dfip",
+  3: "p~",
+  4: "p",
+  5: "r"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "variables",
-  3: "pages"
+  1: "classes",
+  2: "files",
+  3: "functions",
+  4: "variables",
+  5: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Files",
-  2: "Variables",
-  3: "Pages"
+  1: "Classes",
+  2: "Files",
+  3: "Functions",
+  4: "Variables",
+  5: "Pages"
 };
 
